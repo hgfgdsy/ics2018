@@ -64,10 +64,11 @@ static int cmd_si(char *args) {
 	while(arg!=NULL) {
           n=n*10+(*arg-'0');
 	  arg++;
-	 }  
+	 }
+       }	
             cpu_exec(n);
 	    printf("%d\n",n);
-       }
+       
 	return 0;
 }
 
