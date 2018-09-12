@@ -58,12 +58,16 @@ static struct {
 static int cmd_si(char *args) {
 	char *arg = strtok(NULL, " ");
 	int n=0;
+       if(arg==NULL) {
+	       n=1;}
+       else {
 	while(arg!=NULL) {
           n=n*10+(*arg-'0');
 	  arg++;
 	 }  
 	for(int i=0;i<n;i++) {
             cpu_exec(cpu.eip++);}
+       }
 	return -1;
 }
 
