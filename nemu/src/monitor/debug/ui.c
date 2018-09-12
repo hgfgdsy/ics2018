@@ -40,6 +40,8 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args);
 
+static int cmd_info(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -49,6 +51,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Operating N lines", cmd_si },
+  { "info", "Printing the situation of the program", cmd_info },
   /* TODO: Add more commands */
 
 };
@@ -67,10 +70,22 @@ static int cmd_si(char *args) {
 	 }
        }	
             cpu_exec(n);
-	    printf("%d\n",n);
 	return 0;
 }
 
+static int cmd_info(char *args) {
+	if(*args=='r') {
+		printf("%xd\n",cpu.eax);
+		printf("%xd\n",cpu.edx);
+		printf("%xd\n",cpu.ecx);
+		printf("%xd\n",cpu.ebx);
+		printf("%xd\n",cpu.ebp);
+		printf("%xd\n",cpu.esi);
+		printf("%xd\n",cpu.edi);
+		printf("%xd\n",cpu.esp);
+		printf("%xd\n",cpu.eip);}
+	return 0;
+}
 static int cmd_help(char *args) {
   /* extract the first argument */
   char *arg = strtok(NULL, " ");
