@@ -66,6 +66,7 @@ static int cmd_si(char *args) {
 	  arg++;
 	 }  
             cpu_exec(n);
+	    printf("%d\n",n);
        }
 	return 0;
 }
