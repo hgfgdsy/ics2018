@@ -56,16 +56,14 @@ static struct {
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
 static int cmd_si(char *args) {
+	char *arg=strtok(NULL," ");
 	int n=0;
-	int i=1;
-	args-=1;
-       if((args)==NULL) {
+       if(arg==NULL) {
 	       n=1;}
        else {
-	while(args!=NULL) {
-          n=n+(*args-'0')*i;
-	  i=i*10;
-	  args--;
+	while(arg!=NULL) {
+          n=n*10+(*arg-'0');
+	  arg++;
 	 }
        }	
             cpu_exec(n);
