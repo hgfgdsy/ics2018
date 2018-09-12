@@ -65,8 +65,7 @@ static int cmd_si(char *args) {
           n=n*10+(*arg-'0');
 	  arg++;
 	 }  
-	for(int i=0;i<n;i++) {
-            cpu_exec(cpu.eip);}
+            cpu_exec(n);
        }
 	return 0;
 }
