@@ -68,7 +68,7 @@ static int cmd_si(char *args) {
 	for(int i=0;i<n;i++) {
             cpu_exec(cpu.eip++);}
        }
-	return -1;
+	return 0;
 }
 
 static int cmd_help(char *args) {
