@@ -81,7 +81,7 @@ static int cmd_x(char *args) {
 	  p=p*16+(*args-'A');
         args++;}
         for(int i=0;i<temp;i++) {
-vaddr_read(cpu.eax,p);
+printf("0x%x",vaddr_read(cpu.eax,p));
 	  p+=4;}
 	return 0;
 }
