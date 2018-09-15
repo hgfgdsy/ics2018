@@ -42,6 +42,8 @@ static int cmd_si(char *args);
 
 static int cmd_info(char *args);
 
+static int cmd_x(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -52,12 +54,37 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Operating N lines", cmd_si },
   { "info", "Printing the situation of the program", cmd_info },
+  { "x", "Printing the date in the memory", cmd_x },
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
+static int cmd_x(char *args) {
+	int k=strlen(args);
+	int n=0;
+        while(k--) {
+	n=n*10+(*args-'0');
+        args++;
+	};
+	int temp=n;
+        args=args+3;
+        int t=strlen(args);
+        int p=0;
+	while(t--) {
+	if('0'<=*args&&*args<='9')
+	  p=p*16+(*args-'0');
+	else if('a'<=*args&&*args<='f')
+	  p=p*16+(*args-'a');
+        else if('A'<=*args&&*args<='F')
+	  p=p*16+(*args-'A');
+        args++;}
+        for(int i=0;i<temp;i++) {
+vaddr_read(cpu.eax,p);
+	  p+=4;}
+	return 0;
+}
 static int cmd_si(char *args) {
 	int n=0;
        if(args==NULL) {
@@ -75,15 +102,15 @@ static int cmd_si(char *args) {
 
 static int cmd_info(char *args) {
 	if(*args=='r') {
-		printf("%xd\n",cpu.eax);
-		printf("%xd\n",cpu.edx);
-		printf("%xd\n",cpu.ecx);
-		printf("%xd\n",cpu.ebx);
-		printf("%xd\n",cpu.ebp);
-		printf("%xd\n",cpu.esi);
-		printf("%xd\n",cpu.edi);
-		printf("%xd\n",cpu.esp);
-		printf("%xd\n",cpu.eip);}
+		printf("0x%x\n",cpu.eax);
+		printf("0x%x\n",cpu.edx);
+		printf("0x%x\n",cpu.ecx);
+		printf("0x%x\n",cpu.ebx);
+		printf("0x%x\n",cpu.ebp);
+		printf("0x%x\n",cpu.esi);
+		printf("0x%x\n",cpu.edi);
+		printf("0x%x\n",cpu.esp);
+		printf("0x%x\n",cpu.eip);}
 	return 0;
 }
 static int cmd_help(char *args) {
