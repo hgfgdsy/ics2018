@@ -62,11 +62,16 @@ static struct {
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
 static int cmd_x(char *args) {
-	int k=strlen(args);
+	int k=0;
+	char *arg=args;
+	while(*arg!=' ')
+	{k++;
+		arg++;
+	}
 	int n=0;
         while(k--) {
 	n=n*10+(*args-'0');
-        args++;
+	args++;
 	};
 	int temp=n;
         args=args+3;
