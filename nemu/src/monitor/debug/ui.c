@@ -88,7 +88,7 @@ static int cmd_x(char *args) {
         for(int i=0;i<temp;i++) {
 	  printf("0x");
 	  for(int j=p+3;j>=p;j--)
-		  printf("%x",pmem[j]);
+		  printf("%02x",pmem[j]);
 	  printf("\n");
 	  p+=4;
 	}
