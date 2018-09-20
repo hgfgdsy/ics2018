@@ -125,7 +125,7 @@ static int eval(int p,int q){
 				                      }
 			
 			}
-			int k=op-1;
+			int k=op;
 			if(T=='-'){
 				while(tokens[k].type=='-'&&k>=p+1){
 					k--;}
