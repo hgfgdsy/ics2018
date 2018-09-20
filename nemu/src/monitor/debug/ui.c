@@ -71,6 +71,7 @@ static int cmd_p(char *args) {
 		printf("%d\n",temp);
 	else
 		printf("error\n");
+	k=1;
 	return 0;}
 static int cmd_x(char *args) {
 	int k=0;
