@@ -105,6 +105,7 @@ static int eval(int p,int q){
 	else{
 		if(as==1){
 			int count1=0;
+			int T=0;
 			int op=0;
 			for(int j=p;j<=q;j++){
 				if(tokens[j].type=='('){
@@ -115,15 +116,15 @@ static int eval(int p,int q){
 					continue;}
 				if(tokens[j].type!=255){
 					if(count1==0){
-						if(op!='+'&&op!='-'){
-							op=tokens[j].type;}
+						if(T!='+'&&T!='-'){
+							T=tokens[j].type;op=j;}
 						else if(tokens[j].type=='+'||tokens[j].type=='-')
-							op=tokens[j].type;}
-				}
+						{T=tokens[j].type;op=j;}}
+				                      }
 			}
 			int val1=eval(p,op-1);
 			int val2=eval(op+1,q);
-			switch(op){
+			switch(T){
 				case '+': return val1+val2;
                                 case '-': return val1-val2;
 				case '*': return val1*val2;
