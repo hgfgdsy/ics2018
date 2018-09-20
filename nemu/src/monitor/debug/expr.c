@@ -87,7 +87,7 @@ static int eval(int p,int q){
 	bool as=1;
 	if(p>q){
 		if(tokens[p].type!='-')
-		detect=0;
+		  detect=0;
 		return 0;}
 	else if(p==q){
 		if(tokens[p].type==255){
@@ -198,7 +198,7 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  unsigned temp=eval(0,nr_token-1);
+  int temp=eval(0,nr_token-1);
   *success=detect;
   return temp;
   /* TODO: Insert codes to evaluate the expression. */
