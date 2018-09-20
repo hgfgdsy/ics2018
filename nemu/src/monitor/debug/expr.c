@@ -23,7 +23,7 @@ static struct rule {
    */
   {" +", TK_NOTYPE},    //spaces 
   {")", ')'},          //right
-  {"(", '('},          //left
+  {"\(", '('},          //left
   {"[0,9]", NUM},       //number
   {"\\+", '+'},         // plus
   {"-", '-'},          //minus
