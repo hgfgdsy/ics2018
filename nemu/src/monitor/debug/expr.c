@@ -86,9 +86,10 @@ static bool check_parentheses(int p,int q,bool* assit){
 static int eval(int p,int q){
 	bool as=1;
 	if(p>q){
-		
+	        if(tokens[p].type!='-')	
 		  detect=0;
-		return 0;}
+		return 0;
+	}
 	else if(p==q){
 		if(tokens[p].type==255){
 			int n=0;
