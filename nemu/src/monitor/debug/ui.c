@@ -66,9 +66,9 @@ static struct {
 
 static int cmd_p(char *args) {
 	bool k=1;
-	unsigned temp=expr(args,&k);
+	int temp=expr(args,&k);
 	if(k)
-		printf("%u\n",temp);
+		printf("%d\n",temp);
 	else
 		printf("error\n");
 	return 0;}
