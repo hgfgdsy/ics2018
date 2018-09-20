@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ
+  TK_NOTYPE = 256,NUM = 255, TK_EQ
 
   /* TODO: Add more token types */
 
@@ -21,9 +21,14 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-
-  {" +", TK_NOTYPE},    // spaces
+  {" +", TK_NOTYPE},    //spaces 
+  {")", ')'},          //right
+  {"(", '('},          //left
+  {"[0,9]", NUM},       //number
   {"\\+", '+'},         // plus
+  {"-", '-'},          //minus
+  {"\\*", '*'},         //mul
+  {"/", '/'},          // div
   {"==", TK_EQ}         // equal
 };
 
@@ -56,6 +61,82 @@ typedef struct token {
 Token tokens[32];
 int nr_token;
 
+bool detect=1;
+static bool check_parentheses(int p,int q,bool* assit){
+	int count=0;
+	bool temp=1;
+	for(int i=p;i<=q;i++){
+		if(tokens[i].type=='(')
+			count++;
+		if(tokens[i].type==')')
+			count--;
+		if(count==-1){
+			temp=0;
+			*assit=0;
+		        break;}
+		if(count==0&&i!=q){
+			temp=0;
+			*assit=1;}
+		if(count!=0&&i==q){
+			temp=0;
+			*assit=0;}
+	}
+	return temp;}
+
+static int eval(int p,int q){
+	bool as=1;
+	if(p>q){
+		detect=0;
+		return 0;}
+	else if(p==q){
+		if(tokens[p].type==255){
+			int n=0;
+			int len=strlen(tokens[p].str);
+			for(int j=0;j<len;j++)
+				n=n*10+(tokens[p].str[j]-'0');
+			return n;
+		}
+		else{
+			detect=0;
+			return 0;}
+	}
+	else if(check_parentheses(p,q,&as)==true){
+		return eval(p+1,q-1);}
+	else{
+		if(as==1){
+			int count1=0;
+			int op=0;
+			for(int j=p;j<=q;j++){
+				if(tokens[j].type=='('){
+					count1++;
+					continue;}
+				if(tokens[j].type==')'){
+					count1--;
+					continue;}
+				if(tokens[j].type!=255){
+					if(count1==0){
+						if(op!='+'&&op!='-'){
+							op=tokens[j].type;}
+						else if(tokens[j].type=='+'||tokens[j].type=='-')
+							op=tokens[j].type;}
+				}
+			}
+			int val1=eval(p,op-1);
+			int val2=eval(op+1,q);
+			switch(op){
+				case '+': return val1+val2;
+                                case '-': return val1-val2;
+				case '*': return val1*val2;
+				case '/': return val1/val2;
+				default: assert(0);
+			}
+			}
+		else{
+			detect=0;
+			return 0;}
+	}
+}
+
 static bool make_token(char *e) {
   int position = 0;
   int i;
@@ -73,26 +154,40 @@ static bool make_token(char *e) {
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
         position += substr_len;
-
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
         switch (rules[i].token_type) {
+		case 255: 
+			 tokens[nr_token].type=255;
+		        	for(int j=0;j<substr_len;j++)
+			        	tokens[nr_token].str[j]=*(substr_start+j);
+		                           tokens[nr_token].str[substr_len]='\0';
+		                           nr_token++;break;
+	        case '+':
+	                 tokens[nr_token].type='+';nr_token++;break;
+		case '-':
+			 tokens[nr_token].type='-';nr_token++;break;
+		case '*':
+			 tokens[nr_token].type='*';nr_token++;break;
+	        case '/':
+			 tokens[nr_token].type='/';nr_token++;break;
+		case 256:
+			 break;
+		case '(':
+			 tokens[nr_token].type='(';nr_token++;break;
+		case ')':
+			 tokens[nr_token].type=')';nr_token++;break;
           default: TODO();
         }
-
         break;
       }
     }
-
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
-    }
-  }
-
+    }}
   return true;
 }
 
@@ -101,9 +196,9 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-
+  unsigned temp=eval(0,nr_token-1);
+  *success=detect;
+  return temp;
   /* TODO: Insert codes to evaluate the expression. */
   TODO();
-
-  return 0;
 }

@@ -44,6 +44,8 @@ static int cmd_info(char *args);
 
 static int cmd_x(char *args);
 
+static int cmd_p(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -55,12 +57,21 @@ static struct {
   { "si", "Operating N lines", cmd_si },
   { "info", "Printing the situation of the program", cmd_info },
   { "x", "Printing the date in the memory", cmd_x },
+  { "p", "Calculating the value", cmd_p },
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
+static int cmd_p(char *args) {
+	bool k=1;
+	unsigned temp=expr(args,&k);
+	if(k)
+		printf("%u\n",temp);
+	else
+		printf("error\n");
+	return 0;}
 static int cmd_x(char *args) {
 	int k=0;
 	char *arg=args;
