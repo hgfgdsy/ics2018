@@ -204,6 +204,7 @@ uint32_t expr(char *e, bool *success) {
   }
   int temp=eval(0,nr_token-1);
   *success=detect;
+  detect=1;
   return temp;
   /* TODO: Insert codes to evaluate the expression. */
   TODO();
