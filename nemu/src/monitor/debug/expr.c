@@ -123,10 +123,13 @@ static int eval(int p,int q){
 						else if(tokens[j].type=='+'||tokens[j].type=='-')
 						{T=tokens[j].type;op=j;}}
 				                      }
+			
 			}
+			if(T=='-'&&(tokens[op-1].type=='+'||tokens[op-1].type=='-'||tokens[op-1].type=='*'||tokens[op-1].type=='/'))
+				op--;
 			int val1=eval(p,op-1);
 			int val2=eval(op+1,q);
-			switch(T){
+			switch(tokens[op].type){
 				case '+': return val1+val2;
                                 case '-': return val1-val2;
 				case '*': return val1*val2;
