@@ -125,8 +125,15 @@ static int eval(int p,int q){
 				                      }
 			
 			}
-			if((T=='-')&&((tokens[op-1].type=='+')||(tokens[op-1].type=='-')||(tokens[op-1].type=='*')||(tokens[op-1].type=='/'))&&(op!=p))
-				op--;
+			int k=op-1;
+			if(T=='-'){
+				while(tokens[k].type=='-'&&k>=p+1){
+					k--;}
+				if(tokens[k].type=='+'||tokens[k].type=='-'||tokens[k].type=='*'||tokens[k].type=='/'){
+					op=k;}
+				else{
+					op=k+1;}
+			}
 			int val1=eval(p,op-1);
 			int val2=eval(op+1,q);
 			switch(tokens[op].type){
