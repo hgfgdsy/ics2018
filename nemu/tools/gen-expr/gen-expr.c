@@ -6,9 +6,24 @@
 #include <string.h>
 
 // this should be enough
+static unsigned gen_num(){
+       return rand()%4294967296 +0;}
+static int choose(){
+       return rand()%3 +0;}
+static int gen_rand_op(){
+       int temp=rand()4 +1;
+       switch(temp){
+	       case 1: return '+';
+	       case 2: return '-';
+	       case 3: return '*';
+	       case 4: return '/';
+	       default: return ' ';}
+}	
 static char buf[65536];
 static inline void gen_rand_expr() {
   buf[0] = '\0';
+  switch(choose()){
+	  case 0:
 }
 
 static char code_buf[65536];
