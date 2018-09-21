@@ -22,8 +22,9 @@ static int gen_rand_op(){
 static char buf[65536];
 static inline void gen_rand_expr() {
   buf[0] = '\0';
+  int label;
   switch(choose()){
-	  case 0:
+	  case 0:buf[
 }
 
 static char code_buf[65536];
