@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 		  printf("URE_E!\n");
 	  }
 	  else
-		  printf("%d\n",z);
+		  printf("%u\n",z);
 	  k=1;
   }
   /* Receive commands from user. */
