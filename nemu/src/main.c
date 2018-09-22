@@ -10,9 +10,8 @@ int main(int argc, char *argv[]) {
   char buff[65535];
   char ah[50];
   FILE *fp=NULL;
-  fp=fopen( " ~/ics2018/nemu/tools/gen-expr/input", "r");
-  int t=5;
-  while(t--){
+  fp=fopen( "/home/hgfgdsy/ics2018/nemu/tools/gen-expr/input", "r");
+  while(!feof(fp)){
 	  memset(ah,'\0',sizeof(ah));
 	  memset(buff,'\0',sizeof(buff));
 	  fscanf(fp,"%s",ah);
