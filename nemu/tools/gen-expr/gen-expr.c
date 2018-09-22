@@ -6,12 +6,12 @@
 #include <string.h>
 
 // this should be enough
-static char buf[65536];
+static char buf[65535];
 unsigned label=0;
 int token_num=0;
 static void gen_num(){
        char s[11];
-       unsigned temp=rand()%296 +1;
+       unsigned temp=rand()%2000 +1;
        unsigned k=0;
        int count=0;
        if(temp==0){
@@ -55,7 +55,6 @@ static inline void gen_rand_expr() {
           case 1:gen_rand_expr();gen_rand_op();gen_rand_expr();break;
           default:gen_space();gen_num();break;
 }
-buf[label]='\0';
 }
 
 static char code_buf[65536];
@@ -70,7 +69,6 @@ static char *code_format =
 int main(int argc, char *argv[]) {
   int seed = time(0);
   srand(seed);
-  buf[0]='\0';
   int loop = 1;
   if (argc > 1) {
     sscanf(argv[1], "%d", &loop);
@@ -79,11 +77,14 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < loop; i ++) {
     label=0;
     token_num=0;
+    buf[0]='\0';
 	  gen_rand_expr();
 	  while(token_num>300){
 		  label=0;
 		  token_num=0;
+		  buf[0]='\0';
 		  gen_rand_expr();}
+	  buf[label]='\0';
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen(".code.c", "w");
