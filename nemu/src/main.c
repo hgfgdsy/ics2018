@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 	  fgets(buff,65535,(FILE*)fp);
 	  buff[strlen(buff)-1]='\0';
 	  bool k=1;
-	  int z=expr(buff,&k);
+	  unsigned z=expr(buff,&k);
 	  if(!k){
 		  printf("URE_E!\n");
 	  }
