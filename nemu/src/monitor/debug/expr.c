@@ -215,9 +215,10 @@ uint32_t expr(char *e, bool *success) {
   }
   int temp=eval(0,nr_token-1);
   if(detect==0){
-	  printf("presentation error!");}
+	  printf("presentation error!");
+           return 0;}
   else
-          printf("%d\n",temp);
+          return temp;
   /* TODO: Insert codes to evaluate the expression. */
   TODO();
 }

@@ -66,9 +66,11 @@ static struct {
 
 static int cmd_p(char *args) {
 	bool k=1;
-	expr(args,&k);
+	int z=expr(args,&k);
 	if(!k)
-		printf("unrecognized character!");
+		printf("unrecognized character!\n");
+	else
+                printf("%d\n",z);
 	k=1;
 	return 0;}
 static int cmd_x(char *args) {
