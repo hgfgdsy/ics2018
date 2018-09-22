@@ -213,6 +213,7 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
+  detect=1;
   int temp=eval(0,nr_token-1);
   if(detect==0){
 	  printf("presentation error!");
