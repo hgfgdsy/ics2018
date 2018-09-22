@@ -8,21 +8,29 @@
 // this should be enough
 static char buf[65536];
 unsigned label=0;
-
+int token_num=0;
 static void gen_num(){
        char s[11];
        unsigned temp=rand()%296 +1;
        unsigned k=0;
        int count=0;
+       if(temp==0){
+	       count=1;
+	       s[0]='0';}
+       else{
        while(temp!=0){
          k=temp%10;
 	 temp=(temp-k)/10;
          s[count]=(unsigned char)k+'0';
 	 count++;
-       }
+       }}
+       token_num+=count;
              for(int i=count-1;i>=0;i--){
 			 buf[label++]=s[i];}
        }
+
+static void gen_space(){
+	buf[label++]=' ';}
 
 static int choose(){
        return rand()%3 +0;}
@@ -34,12 +42,18 @@ static inline void gen_rand_op(){
 	       case 3: buf[label++]='*';break;
 	       case 4: buf[label++]='/';break;
 	       }
-}	
+       token_num+=1;
+}
+
+static void gen_rl(char c){
+	buf[label++]=c;
+	token_num+=1;}
+
 static inline void gen_rand_expr() {
   switch(choose()){
-          case 0:buf[label++]='(';gen_rand_expr();buf[label++]=')';break;
+          case 0:gen_rl('(');gen_rand_expr();gen_rl(')');gen_space();break;
           case 1:gen_rand_expr();gen_rand_op();gen_rand_expr();break;
-          default:gen_num();break;
+          default:gen_space();gen_num();break;
 }
 buf[label]='\0';
 }
@@ -64,7 +78,12 @@ int main(int argc, char *argv[]) {
   int i;
   for (i = 0; i < loop; i ++) {
     label=0;
+    token_num=0;
 	  gen_rand_expr();
+	  while(token_num>300){
+		  label=0;
+		  token_num=0;
+		  gen_rand_expr();}
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen(".code.c", "w");

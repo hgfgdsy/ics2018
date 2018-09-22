@@ -58,7 +58,7 @@ typedef struct token {
   char str[100];
 } Token;
 
-Token tokens[150];
+Token tokens[310];
 int nr_token;
 
 bool detect=1;
