@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
 	  }
 	  else
 		  printf("%d\n",z);
+	  k=1;
   }
   /* Receive commands from user. */
   ui_mainloop(is_batch_mode);
