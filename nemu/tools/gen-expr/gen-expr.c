@@ -27,7 +27,8 @@ static void gen_num(){
        token_num+=count;
              for(int i=count-1;i>=0;i--){
 			 buf[label++]=s[i];}
-       }
+       buf[label++]='u';       
+}
 
 static void gen_space(){
 	buf[label++]=' ';}

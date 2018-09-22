@@ -24,7 +24,8 @@ static struct rule {
   {" +", TK_NOTYPE},    //spaces 
   {")", ')'},          //right
   {"\\(", '('},          //left
-  {"[0-9]+", NUM},       //number
+  {"[0-9]+", NUM},  //number
+  {"\\u", 'u'},     //unsigned
   {"\\+", '+'},         // plus
   {"-", '-'},          //minus
   {"\\*", '*'},         //mul
@@ -196,6 +197,7 @@ static bool make_token(char *e) {
 			 tokens[nr_token].type='(';nr_token++;break;
 		case ')':
 			 tokens[nr_token].type=')';nr_token++;break;
+	        case 'u':break;
           default: TODO();
         }
         break;
