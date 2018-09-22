@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
 	  memset(buff,'\0',sizeof(buff));
 	  fscanf(fp,"%s",ah);
 	  fgets(buff,65535,(FILE*)fp);
+	  buff[strlen(buff)-1]='\0';
 	  bool k=1;
 	  int z=expr(buff,&k);
 	  if(!k){
