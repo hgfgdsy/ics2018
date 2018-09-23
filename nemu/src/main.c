@@ -11,10 +11,9 @@ int main(int argc, char *argv[]) {
   char ah[50];
   FILE *fp=NULL;
   fp=fopen( "/home/hgfgdsy/ics2018/nemu/tools/gen-expr/input", "r");
-  while(!feof(fp)){
+  while(fscanf(fp,"%s",ah)==1){
 	  memset(ah,'\0',sizeof(ah));
 	  memset(buff,'\0',sizeof(buff));
-	  fscanf(fp,"%s",ah);
 	  fgets(buff,65535,(FILE*)fp);
 	  buff[strlen(buff)-1]='\0';
 	  bool k=1;
