@@ -6,7 +6,7 @@
 #include <string.h>
 
 // this should be enough
-static char buf[65535];
+static char buf[65536];
 unsigned label=0;
 int token_num=0;
 static void gen_num(){
@@ -52,7 +52,7 @@ static void gen_rl(char c){
 
 static inline void gen_rand_expr() {
   switch(choose()){
-          case 0:gen_rl('(');gen_rand_expr();gen_rl(')');gen_space();break;
+          case 0:gen_rl('(');gen_rand_expr();gen_space();gen_rl(')');break;
           case 1:gen_rand_expr();gen_rand_op();gen_rand_expr();break;
           default:gen_space();gen_num();break;
 }
