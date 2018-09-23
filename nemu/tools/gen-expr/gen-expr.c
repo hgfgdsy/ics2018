@@ -7,7 +7,7 @@
 
 // this should be enough
 static char buf[65536];
-unsigned label=0;
+int label=0;
 int token_num=0;
 static void gen_num(){
        char s[11];
@@ -33,8 +33,11 @@ static void gen_num(){
 static void gen_space(){
 	buf[label++]=' ';}
 
-static int choose(){
-       return rand()%3 +0;}
+static int choose(int a){
+	int z=3;
+	if(a>1000)
+		z=a/1000;
+       return rand()%z +0;}
 static inline void gen_rand_op(){
        int what=rand()%4 +1;
        switch(what){
@@ -51,7 +54,7 @@ static void gen_rl(char c){
 	token_num+=1;}
 
 static inline void gen_rand_expr() {
-  switch(choose()){
+  switch(choose(label)){
           case 0:gen_rl('(');gen_rand_expr();gen_space();gen_rl(')');break;
           case 1:gen_rand_expr();gen_rand_op();gen_rand_expr();break;
           default:gen_space();gen_num();break;
