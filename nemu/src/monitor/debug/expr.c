@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256,NUM = 255, HEX=254,REG=253,TK_EQ
+  TK_NOTYPE = 256,NUM = 255, HEX=254,REG=253,TK_EQ=252,TK_UEQ=251,TK_AND=250
 
   /* TODO: Add more token types */
 
@@ -32,7 +32,9 @@ static struct rule {
   {"-", '-'},          //minus
   {"\\*", '*'},         //mul
   {"/", '/'},          // div
-  {"==", TK_EQ}         // equal
+  {"==", TK_EQ},         // equal
+  {"!=", TK_UEQ},       //unequal
+  {"&&", TK_AND}      //and
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -149,12 +151,15 @@ static int eval(int p,int q){
 				if(tokens[j].type==')'){
 					count1--;
 					continue;}
-				if(tokens[j].type!=255){
-					if(count1==0){
-						if(T!='+'&&T!='-'){
-							T=tokens[j].type;op=j;}
-						else if(tokens[j].type=='+'||tokens[j].type=='-')
-						{T=tokens[j].type;op=j;}}
+				if(tokens[j].type!=255&&count1==0){
+						if(T==0||T==250){
+							T=tokens[j].type;op=j;continue;}
+					        if((T==251||T==252)&&tokens[j].type!=0&&tokens[j].type!=250){
+							T=tokens[j].type;op=j;continue;}
+						if((T=='*'||T=='/')&&tokens[j].type!=0&&tokens[j].type!=250&&tokens[j].type!=251&&tokens[j].type!=252)
+						{T=tokens[j].type;op=j;continue;}
+						if(tokens[j].type=='+'||tokens[j].type=='-'){
+							T=tokens[j].type;op=j;continue;}
 				                      }
 			
 			}
@@ -170,6 +175,9 @@ static int eval(int p,int q){
 			int val1=eval(p,op-1);
 			int val2=eval(op+1,q);
 			switch(tokens[op].type){
+				case 250: return val1&&val2;
+				case 251: return val1!=val2;
+				case 252: return val1==val2;
 				case '+': return val1+val2;
                                 case '-': return val1-val2;
 				case '*': return val1*val2;
@@ -209,6 +217,8 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         switch (rules[i].token_type) {
+		case 252:
+			 tokens[nr_token].type=252;nr_token++;break;
 		case 253:
 			 tokens[nr_token].type=253;
 			 tokens[nr_token].str[0]=*(substr_start+1);
