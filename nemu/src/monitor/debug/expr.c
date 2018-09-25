@@ -30,7 +30,7 @@ static struct rule {
   {"-", '-'},          //minus
   {"\\*", '*'},         //mul
   {"/", '/'},          // div
-  {"0[Xx][0-9a-fA-F]+",HEX},    //HEX
+  {"0[Xx][0-9 a-f A-F]+",HEX},    //HEX
   {"==", TK_EQ}         // equal
 };
 
