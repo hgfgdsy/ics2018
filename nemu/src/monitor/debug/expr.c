@@ -175,7 +175,10 @@ static int eval(int p,int q){
 			int val1=eval(p,op-1);
 			int val2=eval(op+1,q);
 			switch(tokens[op].type){
-				case 250: return val1&&val2;
+				case 250: if(val1!=0&&val2!=0)
+						  return 1;
+					  else
+						  return 0;
 				case 251: return val1!=val2;
 				case 252: return val1==val2;
 				case '+': return val1+val2;
@@ -217,6 +220,10 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         switch (rules[i].token_type) {
+		case 250:
+			 tokens[nr_token].type=250;nr_token++;break;
+		case 251:
+			 tokens[nr_token].type=251;nr_token++;break;
 		case 252:
 			 tokens[nr_token].type=252;nr_token++;break;
 		case 253:
