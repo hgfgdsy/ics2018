@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256,NUM = 255, HEX=254,TK_EQ
+  TK_NOTYPE = 256,NUM = 255, HEX=254,REG=253,TK_EQ
 
   /* TODO: Add more token types */
 
@@ -24,6 +24,7 @@ static struct rule {
   {" +", TK_NOTYPE},    //spaces 
   {")", ')'},          //right
   {"\\(", '('},          //left
+  {"\\$[a-zA-Z]+",REG},    //register
   {"0[Xx][0-9a-fA-F]+",HEX},  //HEX
   {"[0-9]+", NUM},  //number
   {"\\u", 'u'},     //unsigned
@@ -112,8 +113,25 @@ static int eval(int p,int q){
 					n=n*16+(tokens[p].str[j]-'A'+10);
 			}
 			return n;}
-
-		
+                if(tokens[p].type==253){
+			int n=0;
+			if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='a'||tokens[p].str[1]=='A')&&(tokens[p].str[2]=='x'||tokens[p].str[2]=='X'))
+		        n=cpu.eax;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='c'||tokens[p].str[1]=='C')&&(tokens[p].str[2]=='x'||tokens[p].str[2]=='X'))
+	                n=cpu.ecx;   
+	                if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='d'||tokens[p].str[1]=='D')&&(tokens[p].str[2]=='x'||tokens[p].str[2]=='X'))
+		        n=cpu.edx;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='b'||tokens[p].str[1]=='B')&&(tokens[p].str[2]=='x'||tokens[p].str[2]=='X'))
+		        n=cpu.ebx;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='s'||tokens[p].str[1]=='S')&&(tokens[p].str[2]=='s'||tokens[p].str[2]=='P'))
+		        n=cpu.esp;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='b'||tokens[p].str[1]=='B')&&(tokens[p].str[2]=='p'||tokens[p].str[2]=='P'))
+		        n=cpu.ebp;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='s'||tokens[p].str[1]=='S')&&(tokens[p].str[2]=='i'||tokens[p].str[2]=='I'))
+		        n=cpu.esi;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='d'||tokens[p].str[1]=='D')&&(tokens[p].str[2]=='i'||tokens[p].str[2]=='I'))
+		        n=cpu.edi;
+		       return n;}	
 			detect=0;
 			return 0;
 	}
@@ -191,6 +209,13 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         switch (rules[i].token_type) {
+		case 253:
+			 tokens[nr_token].type=253;
+			 tokens[nr_token].str[0]=*(substr_start+1);
+                         tokens[nr_token].str[1]=*(substr_start+2);
+                         tokens[nr_token].str[2]=*(substr_start+3);
+                         tokens[nr_token].str[3]='\0';
+                         nr_token++;break;
 		case 254:
 			 tokens[nr_token].type=254;
 			 for(int j=0;j<substr_len-2;j++)
