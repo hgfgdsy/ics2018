@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256,NUM = 255, TK_EQ
+  TK_NOTYPE = 256,NUM = 255, HEX=254,TK_EQ
 
   /* TODO: Add more token types */
 
@@ -30,6 +30,7 @@ static struct rule {
   {"-", '-'},          //minus
   {"\\*", '*'},         //mul
   {"/", '/'},          // div
+  {"0[Xx][0-9a-fA-F]+",HEX},    //HEX
   {"==", TK_EQ}         // equal
 };
 
@@ -99,9 +100,22 @@ static int eval(int p,int q){
 				n=n*10+(tokens[p].str[j]-'0');
 			return n;
 		}
-		else{
+		if(tokens[p].type==254){
+			int n=0;
+			int len=strlen(tokens[p].str);
+			for(int j=0;j<len;j++){
+				if(tokens[p].str[j]>='0'&&tokens[p].str[j]<='9')
+					n=n*16+(tokens[p].str[j]-'0');
+                                if(tokens[p].str[j]>='a'&&tokens[p].str[j]<='f')
+					n=n*16+(tokens[p].str[j]-'a'+10);
+                                if(tokens[p].str[j]>='A'&&tokens[p].str[j]<='F')
+					n=n*16+(tokens[p].str[j]-'A'+10);
+			}
+			return n;}
+
+		
 			detect=0;
-			return 0;}
+			return 0;
 	}
 	else if(check_parentheses(p,q,&as)==true){
 		return eval(p+1,q-1);}
@@ -177,6 +191,13 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         switch (rules[i].token_type) {
+		case 254:
+			 tokens[nr_token].type=254;
+			 for(int j=0;j<substr_len-2;j++)
+			        tokens[nr_token].str[j]=*(substr_start+j+2);
+		          tokens[nr_token].str[substr_len-2]='\0';	 
+				nr_token++;break;
+
 		case 255: 
 			 tokens[nr_token].type=255;
 		        	for(int j=0;j<substr_len;j++)
