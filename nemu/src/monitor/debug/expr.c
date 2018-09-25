@@ -141,6 +141,12 @@ static int eval(int p,int q){
 		return eval(p+1,q-1);}
 	else{
 		if(as==1){
+			if(tokens[p].type==249){
+			     int d=eval(p+1,q);
+			     int n=pmem[d];
+			     return n;
+			}
+			else{
 			int count1=0;
 			int T=0;
 			int op=0;
@@ -151,7 +157,7 @@ static int eval(int p,int q){
 				if(tokens[j].type==')'){
 					count1--;
 					continue;}
-				if(tokens[j].type!=255&&count1==0){
+				if(tokens[j].type!=255&&count1==0&&tokens[j].type!=254&&tokens[j].type!=253){
 						if(T==0||T==250){
 							T=tokens[j].type;op=j;continue;}
 					        if((T==251||T==252)&&tokens[j].type!=0&&tokens[j].type!=250){
@@ -192,10 +198,11 @@ static int eval(int p,int q){
 				default: assert(0);
 			}
 			}
+		}
 		else{
 			detect=0;
 			return 0;}
-	}
+		}
 }
 
 static bool make_token(char *e) {
@@ -278,6 +285,9 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
+  for(int i=0;i<nr_token;i++){
+         if(tokens[i].type=='*'&&(i==0||tokens[i-1].type=='+'||tokens[i-1].type=='-'||tokens[i-1].type=='*'||tokens[i-1].type=='/'||tokens[i-1].type==250||tokens[i-1].type==251||tokens[i-1].type==252))
+       tokens[i].type=249;}		 
   detect=1;
   int temp=eval(0,nr_token-1);
   if(detect==0){
