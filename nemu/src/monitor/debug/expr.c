@@ -157,7 +157,7 @@ static int eval(int p,int q){
 				if(tokens[j].type==')'){
 					count1--;
 					continue;}
-				if(tokens[j].type!=255&&count1==0&&tokens[j].type!=254&&tokens[j].type!=253){
+				if(tokens[j].type!=255&&count1==0&&tokens[j].type!=254&&tokens[j].type!=253&&tokens[j].type!=249){
 						if(T==0||T==250){
 							T=tokens[j].type;op=j;continue;}
 					        if((T==251||T==252)&&tokens[j].type!=0&&tokens[j].type!=250){
