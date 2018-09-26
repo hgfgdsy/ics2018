@@ -39,10 +39,17 @@ extern void free_wp(WP* wp){
 	}
 	if(p==NULL){
 		printf("No such WP!");}
-	else{
+	else
+	{
+		if(q!=NULL){
 		q->next=p->next;
 	        p->next=free_;
 	        free_=p;}
+		else{
+			head=NULL;
+			p->next=free_;
+			free_=p;}
+		}
 }
 
 
@@ -56,9 +63,9 @@ extern void iw(){
 
 extern void ide(int n){
        WP* p=head;
-while(p!=NULL&&p->NO!=n){
- p=p->next;}
- if(p!=NULL)
+       while(p!=NULL&&p->NO!=n){
+       p=p->next;}
+       if(p!=NULL)
 	 free_wp(p);}
 
 
