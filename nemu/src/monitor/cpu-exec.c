@@ -43,7 +43,9 @@ void cpu_exec(uint64_t n) {
 #ifdef DEBUG
    int ye=pan();
     if(ye==0){
-   nemu_state=NEMU_STOP;	   /* TODO: check watchpoints here. */
+   nemu_state=NEMU_STOP;
+   printf("STOP!!!"); 
+   break;  /* TODO: check watchpoints here. */
    }
 #endif
 
