@@ -133,6 +133,9 @@ static int eval(int p,int q){
 		        n=cpu.esi;
                         if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='d'||tokens[p].str[1]=='D')&&(tokens[p].str[2]=='i'||tokens[p].str[2]=='I'))
 		        n=cpu.edi;
+                        if((tokens[p].str[0]=='e'||tokens[p].str[0]=='E')&&(tokens[p].str[1]=='i'||tokens[p].str[1]=='I')&&(tokens[p].str[2]=='p'||tokens[p].str[2]=='P'))
+		        n=cpu.eip;
+
 		       return n;}	
 			detect=0;
 			return 0;
