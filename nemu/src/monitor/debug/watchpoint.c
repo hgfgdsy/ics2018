@@ -55,8 +55,12 @@ extern void free_wp(WP* wp){
 
 extern void iw(){
 	WP* p=head;
+	if(p==NULL){
+		printf("No watchpoint!!!\n");
+	}
+	else{
 	while(p!=NULL){
-		printf("NO:%d\texpr=%s\nOld value=%d\nNew value=%d\n",p->NO,p->STR,p->LAST,p->NEWV);p=p->next;}}
+		printf("NO:%d\texpr=%s\nOld value=%d\nNew value=%d\n",p->NO,p->STR,p->LAST,p->NEWV);p=p->next;}}}
 
 
 
