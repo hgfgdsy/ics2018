@@ -88,7 +88,7 @@ extern int pan(){
 			t=0;}
 		}
 		else{
-			if(z==0){
+			if(z==0&&p->NEWV==1){
 				t=0;}
 		}
 		p->LAST=z;
