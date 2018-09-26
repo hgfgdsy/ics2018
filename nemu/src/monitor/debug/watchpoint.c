@@ -83,10 +83,16 @@ extern int pan(){
 		bool k=1;
 		int z=p->NEWV;
 		p->NEWV=expr(p->STR,&k);
+		if(p->DIF==0){
 		if(p->NEWV!=z){
 			t=0;}
+		}
+		else{
+			if(z==0){
+				t=0;}
+		}
 		p->LAST=z;
 		p=p->next;}
-	return t;}
+              	return t;}
 
 

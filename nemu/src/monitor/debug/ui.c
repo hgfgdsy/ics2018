@@ -56,6 +56,8 @@ static int cmd_w(char *args);
 
 static int cmd_d(char *args);
 
+static int cmd_wt(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -69,12 +71,26 @@ static struct {
   { "x", "Printing the date in the memory", cmd_x },
   { "p", "Calculating the value", cmd_p },
   { "w", "Set a watchpoint", cmd_w },
-  { "d", "Delete a watchpoint", cmd_d }
+  { "d", "Delete a watchpoint", cmd_d },
+  { "wt", "Breaking point", cmd_wt }  
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
+
+static int cmd_wt(char *args){
+	WP* NEW=new_wp();
+	int len=strlen(args);
+	for(int i=0;i<len;i++){
+		NEW->STR[i]=*(args+i);}
+	NEW->STR[len]='\0';
+	bool k=1;
+	NEW->NEWV=expr(NEW->STR,&k);
+	NEW->LAST=NEW->NEWV;
+	NEW->DIF=1;
+        return 0;
+}
 
 static int cmd_d(char *args){
 	int n=0;
@@ -94,6 +110,7 @@ static int cmd_w(char *args){
 	bool k=1;
 	NEW->NEWV=expr(NEW->STR,&k);
 	NEW->LAST=NEW->NEWV;
+	NEW->DIF=0;
         return 0;
 }
 

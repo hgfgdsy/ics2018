@@ -9,6 +9,7 @@ typedef struct watchpoint {
   char STR[10000];
   int LAST;
   int NEWV;
+  int DIF;
   /* TODO: Add more members if necessary */
 
 
