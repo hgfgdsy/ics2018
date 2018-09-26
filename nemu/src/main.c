@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<monitor/expr.h>
+#include<monitor/watchpoint.h>
 int init_monitor(int, char *[]);
 void ui_mainloop(int);
 

@@ -9,6 +9,12 @@
 
 void cpu_exec(uint64_t);
 
+extern void ide(int n);
+
+extern void iw();
+
+extern WP* new_wp();
+
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
   static char *line_read = NULL;
@@ -46,6 +52,10 @@ static int cmd_x(char *args);
 
 static int cmd_p(char *args);
 
+static int cmd_w(char *args);
+
+static int cmd_d(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -58,11 +68,35 @@ static struct {
   { "info", "Printing the situation of the program", cmd_info },
   { "x", "Printing the date in the memory", cmd_x },
   { "p", "Calculating the value", cmd_p },
+  { "w", "Set a watchpoint", cmd_w },
+  { "d", "Delete a watchpoint", cmd_d }
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
+
+static int cmd_d(char *args){
+	int n=0;
+	int len=strlen(args);
+	for(int i=0;i<len;i++){
+		n=n*10+(*(args+i)-'0');}
+	ide(n);
+	return 0;
+}
+
+static int cmd_w(char *args){
+	WP* NEW=new_wp();
+	int len=strlen(args);
+	for(int i=0;i<len;i++){
+		NEW->STR[i]=*(args+i);}
+	NEW->STR[len]='\0';
+	bool k=1;
+	NEW->NEWV=expr(NEW->STR,&k);
+	NEW->LAST=NEW->NEWV;
+        return 0;
+}
+
 
 static int cmd_p(char *args) {
 	bool k=1;
@@ -133,6 +167,8 @@ static int cmd_info(char *args) {
 		printf("edi:0x%x\t%d\n",cpu.edi,cpu.edi);
 		printf("eip:0x%x\t%d\n",cpu.eip,cpu.eip);
 	}
+	else{
+		iw();	}
 	return 0;
 }
 static int cmd_help(char *args) {
