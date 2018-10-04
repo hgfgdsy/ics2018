@@ -30,7 +30,7 @@ typedef struct {
  {	rtlreg_t eax ,ecx, edx, ebx, esp, ebp, esi, edi;};
  };
   vaddr_t eip;
-
+  uint32_t EFLAGS;
 } CPU_state;
 
 extern CPU_state cpu;
