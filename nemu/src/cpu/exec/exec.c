@@ -32,6 +32,7 @@ static make_EHelper(2byte_esc);
 
 extern make_EHelper(call);
 extern make_EHelper(push);
+extern make_EHelper(sub);
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
   static opcode_entry concat(opcode_table_, name) [8] = { \
