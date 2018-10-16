@@ -30,7 +30,17 @@ typedef struct {
  {	rtlreg_t eax ,ecx, edx, ebx, esp, ebp, esi, edi;};
  };
   vaddr_t eip;
-  uint32_t EFLAGS;
+  struct {
+	  unsigned CF: 1;
+	  unsigned d1: 5;
+	  unsigned ZF: 1;
+	  unsigned SF: 1;
+	  unsigned d2: 1;
+	  unsigned IF: 1;
+	  unsigned d3: 1;
+	  unsigned OF: 1;
+	  unsigned d4: 24;
+  } EFLAGS;
 } CPU_state;
 
 extern CPU_state cpu;
