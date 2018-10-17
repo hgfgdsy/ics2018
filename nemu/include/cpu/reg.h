@@ -40,7 +40,7 @@ typedef struct {
 	  unsigned d3: 1;
 	  unsigned OF: 1;
 	  unsigned d4: 24;
-  } EFLAGS;
+  };
 } CPU_state;
 
 extern CPU_state cpu;

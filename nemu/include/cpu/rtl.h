@@ -199,12 +199,28 @@ make_rtl_setget_eflags(SF)
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
-  TODO();
+ int temp=1;
+	for(int i=0;i<width*8;i++){
+	 if(((*result>>i)&0x1)==1){
+		 temp=0;
+		 break;}
+	}
+	if(temp){
+		cpu.ZF=1;}
+	else{
+		cpu.SF=0;}
+  
+  //TODO();
 }
 
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
-  TODO();
+  if(((*result>>(width*8-1))&0x1)==1){
+	  cpu.SF=1;}
+  else{
+	  cpu.SF=0;}
+  
+  //TODO();
 }
 
 static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {
