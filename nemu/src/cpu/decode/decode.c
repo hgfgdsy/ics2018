@@ -42,7 +42,7 @@ static inline make_DopHelper(SI) {
    *
    op->simm = ???
    */
-  signed char temp=(int)instr_fetch(eip,op->width);
+  signed char temp=instr_fetch(eip,op->width);
   op->simm=temp;
   rtl_li(&op->val, op->simm);
 
