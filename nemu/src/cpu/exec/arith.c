@@ -22,8 +22,8 @@ make_EHelper(cmp) {
 }
 
 make_EHelper(inc) {
-  id_src->val=1;
-  rtl_add(&t2,&id_dest->val,&id_src->val);
+  at=1;
+  rtl_add(&t2,&id_dest->val,&at);
   operand_write(id_dest,&t2);
 	//TODO();
 
