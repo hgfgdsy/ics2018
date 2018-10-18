@@ -131,6 +131,10 @@ void interpret_rtl_exit(int state);
 
 /* RTL pseudo instructions */       
 
+static inline void rtl_inc(rtlreg_t* dest,rtlreg_t* src,int imm){
+	at=imm;
+	rtl_add(dest,src,&at);}
+
 static inline void rtl_lr(rtlreg_t* dest, int r, int width) {
   switch (width) {
     case 4: rtl_mv(dest, &reg_l(r)); return;
