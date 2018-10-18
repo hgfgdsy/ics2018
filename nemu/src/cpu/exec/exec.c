@@ -46,6 +46,7 @@ extern make_EHelper(imul2);
 extern make_EHelper(add);
 extern make_EHelper(cltd);
 extern make_EHelper(idiv);
+extern make_EHelper(setcc);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -194,7 +195,7 @@ opcode_entry opcode_table [512] = {
   /* 0x88 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x8c */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x90 */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0x94 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x94 */	IDEXW(r,setcc,1), EMPTY, EMPTY, EMPTY,
   /* 0x98 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x9c */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xa0 */	EMPTY, EMPTY, EMPTY, EMPTY,
