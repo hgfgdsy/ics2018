@@ -43,6 +43,7 @@ extern make_EHelper(cmp);
 extern make_EHelper(jcc);
 extern make_EHelper(nop);
 extern make_EHelper(imul2);
+extern make_EHelper(add);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -56,7 +57,7 @@ static make_EHelper(name) { \
 
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
-    EMPTY, EMPTY, EMPTY, EMPTY,
+    EX(add), EMPTY, EMPTY, EMPTY,
     EX(and), EX(sub), EMPTY, EX(cmp))
 
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
