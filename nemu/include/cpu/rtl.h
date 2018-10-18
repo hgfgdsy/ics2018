@@ -160,14 +160,15 @@ static inline void rtl_not(rtlreg_t *dest, const rtlreg_t* src1) {
 
 static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
+ signed char temp1;
+ signed short temp2;
+ switch(width){
+	 case 1:temp1=*src1;*dest=temp1;break;
+         case 2:temp2=*src1;*dest=temp2;break;
+         case 4:*dest=*src1;break;
+         default: assert(0);}
  
-  /*switch(width){
-	  case 1:signed char temp1=*src1;
-		 *dest=temp1;break;
-	  case 2:signed short temp2=*src1;
-		 *dest=temp2;break;
-	  case 4:*dest=*src1;break;}*/
-   TODO();
+  // TODO();
 }
 
 static inline void rtl_push(const rtlreg_t* src1) {
