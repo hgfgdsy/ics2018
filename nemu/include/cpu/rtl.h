@@ -129,8 +129,7 @@ static inline void interpret_rtl_jrelop(uint32_t relop,
 void interpret_rtl_exit(int state);
 
 
-/* RTL pseudo instructions */
-
+/* RTL pseudo instructions */       
 
 static inline void rtl_lr(rtlreg_t* dest, int r, int width) {
   switch (width) {
@@ -159,10 +158,10 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
  
   /*switch(width){
-	  case 1:signed char temp=*src1;
-		 *dest=temp;break;
-	  case 2:signed short temp=*src1;
-		 *dest=temp;break;
+	  case 1:signed char temp1=*src1;
+		 *dest=temp1;break;
+	  case 2:signed short temp2=*src1;
+		 *dest=temp2;break;
 	  case 4:*dest=*src1;break;}*/
    TODO();
 }
