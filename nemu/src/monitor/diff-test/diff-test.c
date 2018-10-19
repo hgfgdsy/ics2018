@@ -68,10 +68,24 @@ void difftest_step(uint32_t eip) {
 
   ref_difftest_exec(1);
   ref_difftest_getregs(&ref_r);
-  if(ref_r.ebp!=cpu.ebp){
-	  printf("ebp error!\t%u\t%d\t%d\n",cpu.eip,ref_r.ebp,cpu.ebp);nemu_state=NEMU_ABORT;}
+  if(ref_r.eax!=cpu.eax){
+	  printf("eax error!\t%d\t%d\n",ref_r.eax,cpu.eax);nemu_state=NEMU_ABORT;}
+  if(ref_r.ecx!=cpu.ecx){
+	  printf("ecx error!\t%d\t%d\n",ref_r.ecx,cpu.ecx);nemu_state=NEMU_ABORT;}
+  if(ref_r.edx!=cpu.edx){
+	  printf("edx error!\t%d\t%d\n",ref_r.edx,cpu.edx);nemu_state=NEMU_ABORT;}
+  if(ref_r.ebx!=cpu.ebx){
+	  printf("ebx error!\t%d\t%d\n",ref_r.ebx,cpu.ebx);nemu_state=NEMU_ABORT;}
   if(ref_r.esp!=cpu.esp){
-	  printf("esp error!\t%u\t%d\t%d\n",cpu.eip,ref_r.esp,cpu.esp);nemu_state=NEMU_ABORT;}
+	  printf("esp error!\t%d\t%d\n",ref_r.esp,cpu.esp);nemu_state=NEMU_ABORT;}
+  if(ref_r.ebp!=cpu.ebp){
+	  printf("ebp error!\t%d\t%d\n",ref_r.ebp,cpu.ebp);nemu_state=NEMU_ABORT;}
+  if(ref_r.esi!=cpu.esi){
+	  printf("esi error!\t%d\t%d\n",ref_r.esi,cpu.esi);nemu_state=NEMU_ABORT;}
+  if(ref_r.edi!=cpu.edi){
+	  printf("edi error!\t%d\t%d\n",ref_r.ebp,cpu.ebp);nemu_state=NEMU_ABORT;}
+  if(ref_r.eip!=cpu.eip){
+	  printf("eip error!\t%d\t%d\n",ref_r.eip,cpu.eip);nemu_state=NEMU_ABORT;}
 
 
   // TODO: Check the registers state with the reference design.
