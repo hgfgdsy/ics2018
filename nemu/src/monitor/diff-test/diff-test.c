@@ -69,9 +69,9 @@ void difftest_step(uint32_t eip) {
   ref_difftest_exec(1);
   ref_difftest_getregs(&ref_r);
   if(ref_r.ebp!=cpu.ebp){
-	  printf("ebp error!\t%d\t%d\n",ref_r.ebp,cpu.ebp);}
+	  printf("ebp error!\t%u\t%d\t%d\n",eip,ref_r.ebp,cpu.ebp);}
   if(ref_r.esp!=cpu.esp){
-	  printf("esp error!\t%d\t%d\n",ref_r.esp,cpu.esp);}
+	  printf("esp error!\t%u\t%d\t%d\n",eip,ref_r.esp,cpu.esp);}
 
 
   // TODO: Check the registers state with the reference design.
