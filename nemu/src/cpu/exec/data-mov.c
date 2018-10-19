@@ -30,7 +30,8 @@ make_EHelper(popa) {
 }
 
 make_EHelper(leave) {
-	rtl_lr(&cpu.esp,5,4);
+	rtl_lr(&t1,5,4);
+	rtl_sr(4,&t1,4);
   rtl_pop(&cpu.ebp);
 	//TODO();
 
