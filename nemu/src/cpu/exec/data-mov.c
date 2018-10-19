@@ -30,7 +30,8 @@ make_EHelper(popa) {
 }
 
 make_EHelper(leave) {
-  rtl_mv(&reg_l(4),&reg_l(5));
+  t1=reg_l(5);
+	rtl_mv(&reg_l(4),&t1);
   rtl_pop(&reg_l(5));
 	//TODO();
 
