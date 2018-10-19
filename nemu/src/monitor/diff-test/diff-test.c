@@ -68,8 +68,11 @@ void difftest_step(uint32_t eip) {
 
   ref_difftest_exec(1);
   ref_difftest_getregs(&ref_r);
+  if(ref_r.eax==cpu.eax){
+	  printf("eax right!\t%d\t%d",ref_r.eax,cpu.eax);}
+
 
   // TODO: Check the registers state with the reference design.
   // Set `nemu_state` to `NEMU_ABORT` if they are not the same.
-  TODO();
+  // TODO();
 }
