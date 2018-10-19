@@ -52,6 +52,7 @@ extern make_EHelper(leave);
 extern make_EHelper(movzx);
 extern make_EHelper(adc);
 extern make_EHelper(or);
+extern make_EHelper(sar);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -71,7 +72,7 @@ make_group(gp1,
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 make_group(gp2,
     EMPTY, EMPTY, EMPTY, EMPTY,
-    EMPTY, EMPTY, EMPTY, EMPTY)
+    EMPTY, EMPTY, EMPTY, EX(sar))
 
   /* 0xf6, 0xf7 */
 make_group(gp3,
