@@ -51,6 +51,7 @@ extern make_EHelper(test);
 extern make_EHelper(leave);
 extern make_EHelper(movzx);
 extern make_EHelper(adc);
+extern make_EHelper(or);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -97,7 +98,7 @@ make_group(gp7,
 opcode_entry opcode_table [512] = {
   /* 0x00 */	EMPTY, IDEX(G2E,add), EMPTY, IDEX(E2G,add),
   /* 0x04 */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0x08 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x08 */	EMPTY, IDEX(G2E,or), EMPTY, EMPTY,
   /* 0x0c */	EMPTY, EMPTY, EMPTY, EX(2byte_esc),
   /* 0x10 */	EMPTY, EMPTY, EMPTY, IDEX(E2G,adc),
   /* 0x14 */	EMPTY, EMPTY, EMPTY, EMPTY,
