@@ -131,6 +131,10 @@ void interpret_rtl_exit(int state);
 
 /* RTL pseudo instructions */       
 
+static inline void rtl_dec(rtlreg_t* dest,rtlreg_t* src,int imm){
+	at=imm;
+	rtl_sub(dest,src,&at);}
+
 static inline void rtl_inc(rtlreg_t* dest,rtlreg_t* src,int imm){
 	at=imm;
 	rtl_add(dest,src,&at);}
@@ -219,6 +223,7 @@ make_rtl_setget_eflags(OF)
 make_rtl_setget_eflags(ZF)
 make_rtl_setget_eflags(SF)
 
+	
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
  rtlreg_t temp=1;
