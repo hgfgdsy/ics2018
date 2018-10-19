@@ -254,9 +254,8 @@ void exec_wrapper(bool print_flag) {
 
 #ifdef DEBUG
   decoding.p = decoding.asm_buf;
-  printf("%x\n",cpu.eax);
   decoding.p += sprintf(decoding.p, "%8x:   ", ori_eip);
-  printf("%x\n",cpu.eax);
+  printf("%x\n",id_dest->val);
 #endif
 
   decoding.seq_eip = ori_eip;
