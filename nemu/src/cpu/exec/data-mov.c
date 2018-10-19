@@ -33,7 +33,7 @@ make_EHelper(leave) {
 	rtl_lr(&t1,5,4);
 	rtl_sr(4,&t1,4);
   rtl_pop(&t2);
-  rtl_sr(5,&t2,4);
+  operand_write(id_dest,&t2);
 	//TODO();
 
   print_asm("leave");
