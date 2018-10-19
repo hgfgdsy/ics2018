@@ -256,6 +256,7 @@ void exec_wrapper(bool print_flag) {
   decoding.p = decoding.asm_buf;
   printf("%x\n",cpu.eax);
   decoding.p += sprintf(decoding.p, "%8x:   ", ori_eip);
+  printf("%x\n",cpu.eax);
 #endif
 
   decoding.seq_eip = ori_eip;
