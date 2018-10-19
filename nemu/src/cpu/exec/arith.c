@@ -2,6 +2,8 @@
 
 make_EHelper(add) {
   rtl_add(&t2,&id_dest->val,&id_src->val);
+  rtl_setrelop(RELOP_LTU, &t3, &t2, &id_dest->val);
+  rtl_set_CF(&t3);
   operand_write(id_dest,&t2);
 	
 	//TODO();
