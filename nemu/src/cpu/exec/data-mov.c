@@ -89,11 +89,7 @@ make_EHelper(movsx) {
 
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
-  if((decoding.opcode&0x7)==6){
-  rtl_zext(&t0, &id_src->val, 1);}
-  else{
-  rtl_zext(&t0, &id_src->val, 2);}
-  operand_write(id_dest, &t0);
+  operand_write(id_dest, &id_src->val);
   print_asm_template2(movzx);
 }
 
