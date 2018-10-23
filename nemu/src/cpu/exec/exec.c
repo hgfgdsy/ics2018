@@ -50,6 +50,7 @@ extern make_EHelper(setcc);
 extern make_EHelper(test);
 extern make_EHelper(leave);
 extern make_EHelper(movzx);
+extern make_EHelper(movsx);
 extern make_EHelper(adc);
 extern make_EHelper(or);
 extern make_EHelper(sar);
@@ -215,7 +216,7 @@ opcode_entry opcode_table [512] = {
   /* 0xb0 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xb4 */	EMPTY, EMPTY, IDEX(E2G,movzx), EMPTY,
   /* 0xb8 */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0xbc */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0xbc */	EMPTY, EMPTY, EMPTY, IDEXW(E2G,movsx,2),
   /* 0xc0 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xc4 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xc8 */	EMPTY, EMPTY, EMPTY, EMPTY,
