@@ -24,7 +24,7 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
     case CC_BE:
     case CC_S:
     case CC_L:if(cpu.SF==cpu.OF){*dest=0;}
-		      else{*dest=1;}
+		      else{*dest=1;}break;
     case CC_LE:
       //TODO();
     default: panic("should not reach here");
