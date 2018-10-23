@@ -13,6 +13,7 @@ make_EHelper(test) {
 
 make_EHelper(and) {
   rtl_and(&t2,&id_dest->val,&id_src->val);
+  rtl_update_ZFSF(&t2,id_dest->width);
   operand_write(id_dest,&t2);
 	//TODO();
 
