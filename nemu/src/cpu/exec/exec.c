@@ -92,8 +92,8 @@ make_group(gp4,
 
   /* 0xff */
 make_group(gp5,
-    EMPTY, EMPTY, EMPTY, EMPTY,
-    EMPTY, EMPTY, EX(push), EX(call))
+    EMPTY, EMPTY, EMPTY, EX(call),
+    EMPTY, EMPTY, EX(push), EMPTY)
 
   /* 0x0f 0x01*/
 make_group(gp7,
