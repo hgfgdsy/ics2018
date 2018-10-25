@@ -82,6 +82,7 @@ void* memset(void* v,int c,size_t n) {
 	while(n--){
 		*(char*)v=(char)c;
 		v=(char*)v+1;}
+	*(char*)v='\0';
 	  return ret;
 }
 
