@@ -61,6 +61,7 @@ extern make_EHelper(jmp);
 extern make_EHelper(imul1);
 extern make_EHelper(call_rm);
 extern make_EHelper(jmp_rm);
+extern make_EHelper(shr);
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
   static opcode_entry concat(opcode_table_, name) [8] = { \
@@ -79,7 +80,7 @@ make_group(gp1,
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 make_group(gp2,
     EMPTY, EMPTY, EMPTY, EMPTY,
-    EX(shl), EMPTY, EMPTY, EX(sar))
+    EX(shl), EX(shr), EMPTY, EX(sar))
 
   /* 0xf6, 0xf7 */
 make_group(gp3,
