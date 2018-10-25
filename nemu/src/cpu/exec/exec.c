@@ -58,6 +58,7 @@ extern make_EHelper(shl);
 extern make_EHelper(dec);
 extern make_EHelper(not);
 extern make_EHelper(jmp);
+extern make_EHelper(imul1);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -82,7 +83,7 @@ make_group(gp2,
   /* 0xf6, 0xf7 */
 make_group(gp3,
     IDEX(test_I,test), EMPTY, EX(not), EMPTY,
-    EMPTY, EMPTY, EMPTY, EX(idiv))
+    EMPTY, EX(imul1), EMPTY, EX(idiv))
 
   /* 0xfe */
 make_group(gp4,
