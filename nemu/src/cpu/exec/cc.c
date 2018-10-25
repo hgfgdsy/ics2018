@@ -21,7 +21,9 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
 	      else{
 		      *dest=0;}
 	      break;
-    case CC_BE:
+    case CC_BE:if(cpu.CF==1||cpu.ZF==1){
+		       *dest=1;}
+	       else{*dest=0;}break;
     case CC_S:
     case CC_L:if(cpu.SF==cpu.OF){*dest=0;}
 		      else{*dest=1;}break;
