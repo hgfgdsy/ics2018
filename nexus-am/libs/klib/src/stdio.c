@@ -43,7 +43,9 @@ int sprintf(char *out, const char *fmt, ...) {
 	  else{
 		  *out=*fmt;sum++;
 		  out++;fmt++;}
+	  
   }
+  *out='\0';
         /* int sum=0; 
 	 va_list ap;
 	 va_start(ap,fmt);
