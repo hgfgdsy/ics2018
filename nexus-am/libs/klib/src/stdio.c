@@ -44,6 +44,7 @@ int sprintf(char *out, const char *fmt, ...) {
 		  *out=*fmt;sum++;
 		  out++;fmt++;}
   }
+  va_end(ap);
 	
 			  return sum;
 }
