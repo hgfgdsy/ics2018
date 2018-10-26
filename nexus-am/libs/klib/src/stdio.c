@@ -32,13 +32,13 @@ int sprintf(char *out, const char *fmt, ...) {
 			  for(int i=label-1;i>=0;i++){
 				  *out=a[i];sum++;
 				  out++;}
-			  *out='\0';}
+			  }
                    else if(*fmt=='s'){fmt++;
 			   char *src=va_arg(ap,char*);
 			   while(*src!='\0'){
 				   *out=*src;sum++;
 				   out++;src++;}
-			   *out='\0';}
+			   }
 	  }
 	  else{
 		  *out=*fmt;sum++;
