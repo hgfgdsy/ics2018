@@ -24,7 +24,7 @@ int sprintf(char *out, const char *fmt, ...) {
 			  if(k>0){
 				  while(k>0){
 					  a[label++]=(k%10)+'0';
-					  k/=10;}
+					  k=k/10;}
 				  S=0;}
 			  else if(k==0){a[label++]='0';S=0;}
 			  else if(k<0){while(k<0){a[label++]=(-(k%10))+'0';k/=10;}S=1;}
