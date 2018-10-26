@@ -51,10 +51,10 @@ int strcmp(const char* s1, const char* s2) {
   assert((s1!=NULL)&&(s2!=NULL));
   while(!(k=*(unsigned char*)s1-*(unsigned char*)s2)&&*s1){
 	  s1++;s2++;}
-  if(k<0)
+  /*if(k<0)
 	  return -1;
   else if(k>0)
-	  return 1;
+	  return 1;*/
 	return 0;
 }
 
