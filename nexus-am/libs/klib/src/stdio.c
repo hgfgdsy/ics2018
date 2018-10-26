@@ -29,7 +29,7 @@ int sprintf(char *out, const char *fmt, ...) {
 			  else if(k==0){a[label++]='0';S=0;}
 			  else if(k<0){while(k<0){a[label++]=(-(k%10))+'0';k/=10;}S=1;}
 			  if(S==1){*out='-';out++;sum++;}
-			  for(int i=label-1;i>=0;i++){
+			  for(int i=label-1;i>=0;i--){
 				  *out=a[i];sum++;
 				  out++;}
 			  }
