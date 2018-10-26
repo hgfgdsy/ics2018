@@ -12,7 +12,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 }
 
 int sprintf(char *out, const char *fmt, ...) {
-  /*va_list ap;
+  va_list ap;
   int sum=0;
   va_start(ap,fmt);
   while(*fmt!='\0'){
@@ -43,8 +43,8 @@ int sprintf(char *out, const char *fmt, ...) {
 	  else{
 		  *out=*fmt;sum++;
 		  out++;fmt++;}
-  }*/
-         int sum=0; 
+  }
+        /* int sum=0; 
 	 va_list ap;
 	 va_start(ap,fmt);
 	 while(*fmt!='\0'){
@@ -64,11 +64,6 @@ int sprintf(char *out, const char *fmt, ...) {
 				 for(int i=label-1;i>=0;i--){
 					 *out=a[i];
 					 out++;sum++;}}
-			/* else if(*fmt=='s'){fmt++;
-				 char *src=va_arg(ap,char*);
-				 while(*src!='\0'){
-					 *out=*src;sum++;out++;src++;}
-		 }}*/
                            else if(*fmt=='s'){fmt++;
 			   char *src=va_arg(ap,char*);
 			   while(*src!='\0'){
@@ -78,7 +73,7 @@ int sprintf(char *out, const char *fmt, ...) {
 	  }
 
 		 else{*out=*fmt;out++;fmt++;sum++;}}
-		 va_end(ap);
+		 va_end(ap);*/
 			  return sum;
 }
 
