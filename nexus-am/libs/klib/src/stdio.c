@@ -44,7 +44,7 @@ int sprintf(char *out, const char *fmt, ...) {
 		  *out=*fmt;sum++;
 		  out++;fmt++;}
   }*/
-  
+         int sum=0; 
 	 va_list ap;
 	 va_start(ap,fmt);
 	 while(*fmt!='\0'){
@@ -59,13 +59,18 @@ int sprintf(char *out, const char *fmt, ...) {
 				 else if(k==0){a[label++]='0';S=0;}
 				 else if(k<0){while(k<0){a[label++]=(-(k%10))+'0';k/=10;}S=1;}
 				 if(S==1){
-					 *out='-';
+					 *out='-';sum++;
 					 out++;}
 				 for(int i=label-1;i>=0;i--){
 					 *out=a[i];
-					 out++;}}}
-		 else{*out=*fmt;out++;fmt++;}}
-			  return 0;
+					 out++;sum++;}}
+			 else if(*fmt=='s'){fmt++;
+				 char *src=va_arg(ap,char*);
+				 while(*src!='\0'){
+					 *out=*src;sum++;out++;src++;}
+		 }}
+		 else{*out=*fmt;out++;fmt++;sum++;}}
+			  return sum;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
