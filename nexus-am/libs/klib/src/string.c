@@ -49,7 +49,7 @@ char* strcat(char* dst, const char* src) {
 int strcmp(const char* s1, const char* s2) {
   int k=0;
   assert((s1!=NULL)&&(s2!=NULL));
-  while(!(k=*(unsigned char*)s1-*(unsigned char*)s2)&&*s2){
+  while(!(k=*(unsigned char*)s1-*(unsigned char*)s2)&&*s1){
 	  s1++;s2++;}
   if(k<0)
 	  return -1;
