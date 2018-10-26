@@ -69,7 +69,7 @@ void difftest_step(uint32_t eip) {
   ref_difftest_exec(1);
   ref_difftest_getregs(&ref_r);
   if(ref_r.eax!=cpu.eax){
-	  printf("eax error!\t%d\t%d\n",ref_r.eax,cpu.eax);nemu_state=NEMU_ABORT;}
+	  printf("eax error!\t%d\t%d\n",ref_r.eax,cpu.eax); printf("eip error!\t%x\t%x\n",ref_r.eip,cpu.eip);nemu_state=NEMU_ABORT;}
   if(ref_r.ecx!=cpu.ecx){
 	  printf("ecx error!\t%d\t%d\n",ref_r.ecx,cpu.ecx);nemu_state=NEMU_ABORT;}
   if(ref_r.edx!=cpu.edx){
@@ -83,7 +83,7 @@ void difftest_step(uint32_t eip) {
   if(ref_r.esi!=cpu.esi){
 	  printf("esi error!\t%d\t%d\n",ref_r.esi,cpu.esi);nemu_state=NEMU_ABORT;}
   if(ref_r.edi!=cpu.edi){
-	  printf("edi error!\t%d\t%d\n",ref_r.ebp,cpu.ebp);nemu_state=NEMU_ABORT;}
+	  printf("edi error!\t%d\t%d\n",ref_r.ebp,cpu.ebp); printf("eip error!\t%x\t%x\n",ref_r.eip,cpu.eip);nemu_state=NEMU_ABORT;}
   if(ref_r.eip!=cpu.eip){
 	  printf("eip error!\t%x\t%x\n",ref_r.eip,cpu.eip);nemu_state=NEMU_ABORT;}
  /* if(ref_r.ZF!=cpu.ZF){
