@@ -78,6 +78,7 @@ int sprintf(char *out, const char *fmt, ...) {
 	  }
 
 		 else{*out=*fmt;out++;fmt++;sum++;}}
+		 va_end(ap);
 			  return sum;
 }
 
