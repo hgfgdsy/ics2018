@@ -57,9 +57,9 @@ make_EHelper(in) {
   operand_write(id_dest,&t0);
   print_asm_template2(in);
 
-/*#if defined(DIFF_TEST)
+#if defined(DIFF_TEST)
   difftest_skip_ref();
-#endif*/
+#endif
 }
 
 make_EHelper(out) {
