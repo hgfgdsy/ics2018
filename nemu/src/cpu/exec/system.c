@@ -2,6 +2,8 @@
 
 void difftest_skip_ref();
 void difftest_skip_dut();
+uint32_t pio_read_b(ioaddr_t addr);
+
 
 make_EHelper(lidt) {
   TODO();
@@ -42,8 +44,9 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-  TODO();
-
+  //TODO();
+  t2=pio_read_b(id_src->val);
+  operand_write(id_dest,&t2);
   print_asm_template2(in);
 
 #if defined(DIFF_TEST)
