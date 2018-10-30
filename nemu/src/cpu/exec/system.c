@@ -3,7 +3,8 @@
 void difftest_skip_ref();
 void difftest_skip_dut();
 extern uint32_t pio_read_b();
-
+extern uint32_t pio_read_w();
+extern uint32_t pio_read_l();
 
 make_EHelper(lidt) {
   TODO();
@@ -45,7 +46,11 @@ make_EHelper(iret) {
 
 make_EHelper(in) {
   //TODO();
-  t2=pio_read_b(id_src->val);
+  switch(id_dest->width){
+	  case 1:t2=pio_read_b(id_src->val);break;
+          case 2:t2=pio_read_w(id_src->val);break;
+	  case 4:t2=pio_read_l(id_src->val);break;
+	  default:assert(0);}
   operand_write(id_dest,&t2);
   print_asm_template2(in);
 
