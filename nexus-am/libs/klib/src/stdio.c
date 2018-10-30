@@ -29,7 +29,7 @@ int printf(const char *fmt, ...) {
 			  case 's':{fmt++;
 			   char *src=va_arg(ap,char*);
 			   while(*src!='\0'){
-				   _putc(*src);sum++;}break;
+				   _putc(*src);sum++;src++;}break;
 			   }
 	  }
 	  }
