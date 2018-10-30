@@ -49,19 +49,17 @@ make_EHelper(iret) {
 
 make_EHelper(in) {
   //TODO();
-	unsigned char z=0;
   switch(id_dest->width){
-	  case 1:z = pio_read_b(id_src->val);break;
+	  case 1:t0 = pio_read_b(id_src->val);break;
           case 2:t0 = pio_read_w(id_src->val);break;
 	  case 4:t0 = pio_read_l(id_src->val);break;
 	  default:assert(0);}
-		  t0=z;
   operand_write(id_dest,&t0);
   print_asm_template2(in);
 
-#if defined(DIFF_TEST)
+/*#if defined(DIFF_TEST)
   difftest_skip_ref();
-#endif
+#endif*/
 }
 
 make_EHelper(out) {
@@ -74,7 +72,7 @@ make_EHelper(out) {
 
   print_asm_template2(out);
 
-#if defined(DIFF_TEST)
+/*#if defined(DIFF_TEST)
   difftest_skip_ref();
-#endif
+#endif*/
 }
