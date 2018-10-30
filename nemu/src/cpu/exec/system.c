@@ -2,7 +2,6 @@
 
 void difftest_skip_ref();
 void difftest_skip_dut();
-extern uint32_t pio_read_common(ioaddr_t addr,int len);
 extern uint32_t pio_read_b(ioaddr_t addr);
 extern uint32_t pio_read_w(ioaddr_t addr);
 extern uint32_t pio_read_l(ioaddr_t addr);
@@ -58,9 +57,9 @@ make_EHelper(in) {
   operand_write(id_dest,&t0);
   print_asm_template2(in);
 
-/*#if defined(DIFF_TEST)
+#if defined(DIFF_TEST)
   difftest_skip_ref();
-#endif*/
+#endif
 }
 
 make_EHelper(out) {
