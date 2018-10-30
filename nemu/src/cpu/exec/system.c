@@ -2,7 +2,7 @@
 
 void difftest_skip_ref();
 void difftest_skip_dut();
-uint32_t pio_read_b(ioaddr_t addr);
+uint32_t pio_read_b();
 
 
 make_EHelper(lidt) {
