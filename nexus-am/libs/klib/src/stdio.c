@@ -11,7 +11,7 @@ int printf(const char *fmt, ...) {
 	while(*fmt!='\0'){
 	  if(*fmt=='%'){
 		  fmt++;int n=0;
-		  if(*fmt==0){
+		  if(*fmt=='0'){
 			  fmt++;
 			  while(('0'<=*fmt)&&(*fmt<='9')){
 				  n=n*10+(*fmt-'0');fmt++;}}
