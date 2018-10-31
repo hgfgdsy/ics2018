@@ -12,7 +12,8 @@ int printf(const char *fmt, ...) {
 	  if(*fmt=='%'){
 		  fmt++;
 		  switch(*fmt){
-			  case '0':fmt++;int n=0;while(*fmt!='d'){n=n*10+(*fmt-'0');fmt++;}
+			  case '0':fmt++;int n=0;while(*fmt!='d'&&*fmt!='\0'){n=n*10+(*fmt-'0');fmt++;}
+				   if(*fmt=='\0') break;
                                    fmt++;
 				   int k=va_arg(ap,int);
 			           char a[40];int label=0;int S;
