@@ -54,7 +54,6 @@ int printf(const char *fmt, ...) {
 			   while(*src!='\0'){
 				   _putc(*src);sum++;src++;}break;
 			   }
-			  default: assert(0);
 	  }
 	  }
 	  else{
