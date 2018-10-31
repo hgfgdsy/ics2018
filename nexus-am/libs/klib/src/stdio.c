@@ -10,11 +10,11 @@ int printf(const char *fmt, ...) {
    va_start(ap,fmt);
 	while(*fmt!='\0'){
 	  if(*fmt=='%'){
-		  fmt++;
+		  fmt++;int n=0;
 		  if(*fmt==0){
-			  fmt++;int n=0;
+			  fmt++;
 			  while(('0'<=*fmt)&&(*fmt<='9')){
-				  n=n*10+(*fmt-'0');fmt++;}
+				  n=n*10+(*fmt-'0');fmt++;}}
 		  switch(*fmt){
 			  case 'u':fmt++;unsigned int k=va_arg(ap,unsigned int);char a[40];int label=0;
 				   if(k==0) a[label++]='0';
@@ -48,7 +48,7 @@ int printf(const char *fmt, ...) {
 			   }
 			  default:assert(0);
 	  }
-		  }
+		  
 	  }
 	  else{
 		  _putc(*fmt);fmt++;sum++;}
