@@ -11,30 +11,17 @@ int printf(const char *fmt, ...) {
 	while(*fmt!='\0'){
 	  if(*fmt=='%'){
 		  fmt++;
+		  if(*fmt==0){
+			  fmt++;int n=0;
+			  while(('0'<=*fmt)&&(*fmt<='9')){
+				  n=n*10+(*fmt-'0');fmt++;}
 		  switch(*fmt){
-			  case '0':fmt++;int n=0;while(*fmt!='d'&&*fmt!='\0'){n=n*10+(*fmt-'0');fmt++;}
-				   if(*fmt=='\0') break;
-                                   fmt++;
-				   int k=va_arg(ap,int);
-			           char a[40];int label=0;int S;
-			           if(k>0){
-				   while(k>0){
-					  a[label++]=(k%10)+'0';
-					  k=k/10;}
-				   S=0;}
-			           else if(k==0){a[label++]='0';S=0;}
-			           else if(k<0){while(k<0){a[label++]=(-(k%10))+'0';k/=10;}S=1;}
-				   int cnt=0;
-			           if(S==1){_putc('-');sum++;cnt=n-label-1;}
-				   else cnt=n-label;
-				   while(cnt--){
-					   _putc('0');sum++;}
-			           for(int i=label-1;i>=0;i--){
-				       _putc(a[i]);sum++;}break;
-			  
-
-
-
+			  case 'u':fmt++;unsigned int k=va_arg(ap,unsigned int);char a[40];int label=0;
+				   if(k==0) a[label++]='0';
+				   else
+				   while(k!=0){
+					   a[label++]=(k%10)+'0';k/=10;}
+				   for(int i=label-1;i>=0;i--){_putc(a[i]);sum++;}break;
 			  case 'd':{fmt++;
 			  int k=va_arg(ap,int);
 			  char a[40];int label=0;int S;
@@ -45,7 +32,12 @@ int printf(const char *fmt, ...) {
 				  S=0;}
 			  else if(k==0){a[label++]='0';S=0;}
 			  else if(k<0){while(k<0){a[label++]=(-(k%10))+'0';k/=10;}S=1;}
-			  if(S==1){_putc('-');sum++;}
+			  int cnt=0;
+			  if(S==1){_putc('-');sum++;cnt=n-label-1;}
+			  else cnt=n-label;
+			  if(cnt>0)
+				  while(cnt--){_putc('0');sum++;}
+
 			  for(int i=label-1;i>=0;i--){
 				  _putc(a[i]);sum++;}break;
 			  }
@@ -54,7 +46,9 @@ int printf(const char *fmt, ...) {
 			   while(*src!='\0'){
 				   _putc(*src);sum++;src++;}break;
 			   }
+			  default:assert(0);
 	  }
+		  }
 	  }
 	  else{
 		  _putc(*fmt);fmt++;sum++;}
