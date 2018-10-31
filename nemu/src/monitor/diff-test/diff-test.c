@@ -68,7 +68,7 @@ void difftest_step(uint32_t eip) {
 
   ref_difftest_exec(1);
   ref_difftest_getregs(&ref_r);
-   printf("%d\t%d\n",ref_r.eax,cpu.eax); printf("%x\t%x\n",ref_r.edx,cpu.edx);
+   //printf("%d\t%d\n",ref_r.eax,cpu.eax); printf("%x\t%x\n",ref_r.edx,cpu.edx);
   if(ref_r.eax!=cpu.eax){
 	  printf("eax error!\t%d\t%d\n",ref_r.eax,cpu.eax); printf("eip error!\t%x\t%x\n",ref_r.eip,cpu.eip);nemu_state=NEMU_ABORT;}
   if(ref_r.ecx!=cpu.ecx){
