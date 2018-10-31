@@ -68,7 +68,7 @@ extern make_EHelper(out);
 extern make_EHelper(div);
 extern make_EHelper(mul);
 extern make_EHelper(cwtl);
-
+extern make_EHelper(neg);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -92,7 +92,7 @@ make_group(gp2,
 
   /* 0xf6, 0xf7 */
 make_group(gp3,
-    IDEX(test_I,test), EMPTY, EX(not), EMPTY,
+    IDEX(test_I,test), EMPTY, EX(not), EX(neg),
     EX(mul), EX(imul1), EX(div), EX(idiv))
 
   /* 0xfe */
