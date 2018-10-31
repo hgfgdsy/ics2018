@@ -21,6 +21,10 @@ int printf(const char *fmt, ...) {
 				   else
 				   while(k!=0){
 					   a[label++]=(k%10)+'0';k/=10;}
+				   int cnt=n-label;
+				   if(cnt>0)
+					   while(cnt--){
+						   _putc('0');sum++;}
 				   for(int i=label-1;i>=0;i--){_putc(a[i]);sum++;}break;
 			  case 'd':{fmt++;
 			  int k=va_arg(ap,int);
@@ -46,7 +50,7 @@ int printf(const char *fmt, ...) {
 			   while(*src!='\0'){
 				   _putc(*src);sum++;src++;}break;
 			   }
-			  default:assert(0);
+			  //default:assert(0);
 	  }
 		  
 	  }
