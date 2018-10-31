@@ -80,7 +80,7 @@ make_EHelper(cwtl) {
     //TODO();
     rtl_lr(&t2,0,2);
     rtl_sext(&t0,&t2,2);
-    rtl_sr(0,&t2,4);
+    rtl_sr(0,&t0,4);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
