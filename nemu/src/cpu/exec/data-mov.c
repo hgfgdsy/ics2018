@@ -58,7 +58,7 @@ make_EHelper(cltd) {
     rtl_update_SF(&t2,4);
     rtl_get_SF(&t1);
     if(t1){
-	    t2=0xffff;
+	    t2=0xffffffff;
 	    rtl_sr(2,&t2,4);}
     else{
 	    t2=0;
