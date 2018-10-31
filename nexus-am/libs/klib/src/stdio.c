@@ -12,6 +12,28 @@ int printf(const char *fmt, ...) {
 	  if(*fmt=='%'){
 		  fmt++;
 		  switch(*fmt){
+			  case '0':fmt++;int n=0;while(*fmt!='d'){n=n*10+(*fmt-'0');fmt++;}
+                                   fmt++;
+				   int k=va_arg(ap,int);
+			           char a[40];int label=0;int S;
+			           if(k>0){
+				   while(k>0){
+					  a[label++]=(k%10)+'0';
+					  k=k/10;}
+				   S=0;}
+			           else if(k==0){a[label++]='0';S=0;}
+			           else if(k<0){while(k<0){a[label++]=(-(k%10))+'0';k/=10;}S=1;}
+				   int cnt=0;
+			           if(S==1){_putc('-');sum++;cnt=n-label-1;}
+				   else cnt=n-label;
+				   while(cnt--){
+					   _putc('0');sum++;}
+			           for(int i=label-1;i>=0;i--){
+				       _putc(a[i]);sum++;}break;
+			  
+
+
+
 			  case 'd':{fmt++;
 			  int k=va_arg(ap,int);
 			  char a[40];int label=0;int S;
