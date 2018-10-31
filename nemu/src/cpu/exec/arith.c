@@ -77,6 +77,7 @@ make_EHelper(neg) {
    else rtl_set_CF(&t3);
    t3=0;
    rtl_sub(&t2,&t3,&id_dest->val);
+   operand_write(id_dest,&t2);
    rtl_update_ZFSF(&t2,id_dest->width);
   rtl_xor(&t0, &t3, &id_dest->val);
   rtl_xor(&t1, &t3, &t2);
