@@ -42,4 +42,5 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
 }
 
 void vga_init() {
+	memset((void*)0x40000,0,0x40000);
 }
