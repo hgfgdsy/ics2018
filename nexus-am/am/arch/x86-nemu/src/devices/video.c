@@ -34,7 +34,7 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
 	      int T=(ctl->h*ctl->w);
 	      int z=ctl->y*screen_width()+ctl->x;
 	      for(int j=0;j<T;j++){
-	      fb[z+j]=*(ctl->pixels+j);
+	      fb[z+4*j]=*(ctl->pixels+j);
 	      }
       }
       return sizeof(_FBCtlReg);
