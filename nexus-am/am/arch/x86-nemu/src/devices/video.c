@@ -31,13 +31,14 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
         // do nothing, hardware syncs.
       }
       else{
-	      int N=screen_width() / ctl->w;
-	      int W=N*ctl->w;
-	      int T=(ctl->h*ctl->w);
-	      int z=(ctl->y*W)+ctl->x;
-	      for(int j=0;j<T;j++){
-	      fb[z+j]=*(ctl->pixels);
+	      
+	      int z=(ctl->y*screen_width())+ctl->x;
+	      int k=0;
+	      for(int i=0;i<ctl->h;i++){
+	      for(int j=0;j<ctl->w;j++){
+	      fb[z+j]=*(ctl->pixels+k++);
 	      }
+	      z+=screen_width();}
       }
       return sizeof(_FBCtlReg);
     }
