@@ -87,7 +87,7 @@ void* memcpy(void* out, const void* in, size_t n) {
   char* bin=(char*)in;
   char* bout=(char*)out;
   while(n--){
-	  *bout++=*bin++;}
+	  *bout=*bin;bout++;bin++;}
 	return out;
 }
 
