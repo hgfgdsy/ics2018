@@ -95,10 +95,13 @@ void* memcpy(void* out, const void* in, size_t n) {
 
 int memcmp(const void* s1, const void* s2, size_t n){
   /*int k=0;
-  assert((s1!=NULL)&&(s2!=NULL));
-  while((n--)&&(*(char*)s1==*(char*)s2)){
-	  s1=(char*)s1+1;;s2=(char*)s2+1;}
-  k=*(char*)s1-*(char*)s2;
+  unsigned char *src=(unsigned char*)s2, *dest=(unsigned char*)s1;
+  if(n>0)
+  while((n--)&&(*dest==*src)){
+	  dest++;src++;}
+  if(n==-1) return 0;
+  unsigned temp=(*dest-*src);
+  k=(int)temp;
   if(k<0)
 	  return -1;
   else if(k>0)
