@@ -30,7 +30,6 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
       if (ctl->sync) {
         // do nothing, hardware syncs.
       }
-      else{
 	      
 	      int z=(ctl->y*screen_width())+ctl->x;
 	      int k=0;
@@ -39,7 +38,6 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
 	      fb[z+j]=*(ctl->pixels+k++);
 	      }
 	      z+=screen_width();}
-      }
       return sizeof(_FBCtlReg);
     }
   }

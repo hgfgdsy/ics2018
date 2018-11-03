@@ -74,6 +74,8 @@ int strncmp(const char* s1, const char* s2, size_t n) {
 }
 
 void* memset(void* v,int c,size_t n) {
+	if(v==NULL||n<0)
+		return NULL;
 	void* ret=v;
 	while(n--){
 		*(char*)v=(char)c;
