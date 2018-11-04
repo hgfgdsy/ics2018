@@ -191,7 +191,7 @@ static inline void rtl_push(const rtlreg_t* src1) {
   vaddr_write(cpu.esp,*src1,4);
 }
 
-static inline void rtl_pop(rtlreg_t* dest) {
+/*static inline*/ void rtl_pop(rtlreg_t* dest) {
   // dest <- M[esp]
   // esp <- esp + 4
   *dest=vaddr_read(cpu.esp,4);
@@ -244,7 +244,7 @@ static inline void rtl_update_SF(const rtlreg_t* result, int width) {
   //TODO();
 }
 
-/*static inline*/ void rtl_update_ZFSF(const rtlreg_t* result, int width) {
+static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {
   rtl_update_ZF(result, width);
   rtl_update_SF(result, width);
 }
