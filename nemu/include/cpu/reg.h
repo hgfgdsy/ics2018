@@ -29,7 +29,10 @@ typedef struct {
  struct
  {	rtlreg_t eax ,ecx, edx, ebx, esp, ebp, esi, edi;};
  };
+  uint16_t CS;
   vaddr_t eip;
+  union{
+	  unsigned EFLAGS;
   struct {
 	  unsigned CF: 1;
 	  unsigned d1: 5;
@@ -40,6 +43,7 @@ typedef struct {
 	  unsigned d3: 1;
 	  unsigned OF: 1;
 	  unsigned d4: 24;
+  };
   };
 } CPU_state;
 
