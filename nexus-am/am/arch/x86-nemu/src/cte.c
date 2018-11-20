@@ -16,7 +16,7 @@ _Context* irq_handle(_Context *tf) {
       case 129:ev.event = _EVENT_YIELD; break;
       default: ev.event = _EVENT_ERROR; break;
     }
-
+    ev.event = _EVENT_YIELD;
     next = user_handler(ev, tf);
     if (next == NULL) {
       next = tf;
