@@ -29,7 +29,6 @@ typedef struct {
  struct
  {	rtlreg_t eax ,ecx, edx, ebx, esp, ebp, esi, edi;};
  };
-  uint32_t CS;
   vaddr_t eip;
   union{
 	  unsigned EFLAGS;
@@ -45,6 +44,7 @@ typedef struct {
 	  unsigned d4: 24;
   };
   };
+  uint32_t CS;
   uint16_t limit;
   uint32_t base;
 } CPU_state;
