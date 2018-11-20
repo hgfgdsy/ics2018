@@ -14,7 +14,7 @@ extern void raise_intr(uint8_t NO, vaddr_t ret_addr);
 make_EHelper(lidt) {
   //TODO();
   cpu.limit=vaddr_read(cpu.eip,2);
-  cpu.base=vaddr_read(cpu.eip+1,4);
+  cpu.base=vaddr_read(cpu.eip+2,4);
   print_asm_template1(lidt);
 }
 
