@@ -22,8 +22,16 @@ make_EHelper(pop) {
 }
 
 make_EHelper(pusha) {
-  TODO();
+  //TODO();
+  rtl_lr(&t0,4,4);
+  for(int i=0;i<=7;i++){
+	  if(i!=4){
+	  rtl_lr(&t1,i,4);
+	  rtl_push(&t1);}
+	  else
+	  rtl_push(&t0);
 
+  }
   print_asm("pusha");
 }
 

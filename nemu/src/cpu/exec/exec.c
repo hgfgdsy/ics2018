@@ -73,6 +73,7 @@ extern make_EHelper(imul3);
 extern make_EHelper(rol);
 extern make_EHelper(lidt);
 extern make_EHelper(int);
+extern make_EHelper(pusha);
 
 
 #define make_group(name, item0, item1, item2, item3, item4, item5, item6, item7) \
@@ -141,7 +142,7 @@ opcode_entry opcode_table [512] = {
   /* 0x54 */	EMPTY, IDEX(r,push), IDEX(r,push), IDEX(r,push),
   /* 0x58 */	IDEX(r,pop), IDEX(r,pop), IDEX(r,pop), IDEX(r,pop),
   /* 0x5c */	EMPTY, IDEX(r,pop), IDEX(r,pop), IDEX(r,pop),
-  /* 0x60 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x60 */	EX(pusha), EMPTY, EMPTY, EMPTY,
   /* 0x64 */	EMPTY, EMPTY, EX(operand_size), EMPTY,
   /* 0x68 */	IDEX(I,push), IDEX(I_E2G,imul3), IDEXW(I,push,1), EMPTY,
   /* 0x6c */	EMPTY, EMPTY, EMPTY, EMPTY,
