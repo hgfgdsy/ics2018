@@ -13,7 +13,7 @@ _Context* irq_handle(_Context *tf) {
   if (user_handler) {
     _Event ev;
     switch (tf->irq) {
-      case 129:ev.event = _EVENT_YIELD; break;
+      case 1:ev.event = _EVENT_YIELD; break;
       default: ev.event = _EVENT_ERROR; break;
     }
 
