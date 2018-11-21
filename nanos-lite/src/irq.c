@@ -6,7 +6,7 @@ static _Context* do_event(_Event e, _Context* c) {
     case  _EVENT_YIELD: printf("nanshou!!\n"); break;
     default: panic("Unhandled event ID = %d", e.event);
   }
-  //assert(0);
+  assert(0);
 
   return NULL;
 }
