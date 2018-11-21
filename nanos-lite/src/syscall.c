@@ -2,7 +2,7 @@
 #include "syscall.h"
 
 //extern void _halt(int code) __attribute__((__noreturn__));
-
+uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c); 
 
 
 _Context* do_syscall(_Context *c) {
@@ -13,11 +13,11 @@ _Context* do_syscall(_Context *c) {
   a[3] = c->GPR4;
 
   switch (a[0]) {
-	  case SYS_write: if(a[1]==1||a[1]==2){
+	  case SYS_write: /*if(a[1]==1||a[1]==2){
 				  for(int i=0;i<a[3];i++)
 					  _putc(*(char*)(a[2]+i));
-				  c->GPRx=a[3];}
-		          //c->GPRx=sys_write(a[1],a[2],a[3]);
+				  c->GPRx=a[3];}*/
+		          c->GPRx=sys_write(a[1],a[2],a[3]);
 			  break;
 	  case SYS_exit: _halt(c->GPRx); break;
 	  case SYS_yield: _yield(); c->GPRx=0;  break;
@@ -26,5 +26,14 @@ _Context* do_syscall(_Context *c) {
 
   return NULL;
 }
+
+uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c) {
+                            if(a==1||a==2){
+				  for(int i=0;i<c;i++)
+					  _putc(*(char*)(b+i));
+			    }
+			    return c;
+}
+
 
 
