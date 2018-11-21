@@ -8,12 +8,15 @@
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
+  a[1] = c->GPR2;
+  a[2] = c->GPR3;
+  a[3] = c->GPR4;
 
   switch (a[0]) {
-	  case SYS_write: if(c->GPR2==1||c->GPR2==2){
-				  for(int i=0;i<c->GPR4;i++)
-					  _putc(*(char*)(c->GPR3+i));
-				  c->GPRx=c->GPR4;}
+	  case SYS_write: if(a[1]==1||a[1]==2){
+				  for(int i=0;i<13;i++)
+					  _putc(*(char*)(a[2]+i));
+				  c->GPRx=13;}
 			  break;
 	  case SYS_exit: _halt(c->GPRx); break;
 	  case SYS_yield: _yield(); c->GPRx=0;  break;
