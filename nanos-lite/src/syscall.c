@@ -17,7 +17,7 @@ _Context* do_syscall(_Context *c) {
 				  for(int i=0;i<a[3];i++)
 					  _putc(*(char*)(a[2]+i));
 				  c->GPRx=a[3];}
-		          
+		          //c->GPRx=sys_write(a[1],a[2],a[3]);
 			  break;
 	  case SYS_exit: _halt(c->GPRx); break;
 	  case SYS_yield: _yield(); c->GPRx=0;  break;
@@ -26,3 +26,5 @@ _Context* do_syscall(_Context *c) {
 
   return NULL;
 }
+
+
