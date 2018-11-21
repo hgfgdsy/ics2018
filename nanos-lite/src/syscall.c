@@ -13,10 +13,10 @@ _Context* do_syscall(_Context *c) {
   a[3] = c->GPR4;
 
   switch (a[0]) {
-	  case SYS_write: /*if(a[1]==1||a[1]==2){
+	  case SYS_write: if(a[1]==1||a[1]==2){
 				  for(int i=0;i<a[3];i++)
 					  _putc(*(char*)(a[2]+i));
-				  c->GPRx=a[3];}*/
+				  c->GPRx=a[3];}
 		          
 			  break;
 	  case SYS_exit: _halt(c->GPRx); break;
