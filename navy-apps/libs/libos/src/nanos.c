@@ -52,9 +52,10 @@ void *_sbrk(intptr_t increment){
   temp=pbk;
   intptr_t now=(intptr_t)pbk+increment;
   //intptr_t  a=_syscall_(SYS_brk,now,0,0);
-  pbk=(void*)now;
+  //pbk=(void*)now;
   //return temp;
   if(_syscall_(SYS_brk,now,0,0)!=-1) {
+	   pbk=(void*)now;
 	  return temp;}
   else{
 	  return (void*)-1;}
