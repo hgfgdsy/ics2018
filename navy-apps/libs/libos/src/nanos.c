@@ -45,12 +45,13 @@ int _write(int fd, void *buf, size_t count){
 void *_sbrk(intptr_t increment){
   //return (void *)-1;
   void* temp=pbk;
-  pbk+=increment;
-  return temp;
-  /*if(_syscall_(SYS_brk, (uintptr_t) pbk+increment,0,0)==0) {
+  //pbk+=increment;
+  //return temp;
+  uintptr_t a=_syscall_(SYS_brk, (uintptr_t) pbk+increment,0,0);
+  if(a==0) {
 	  pbk=pbk+increment; return temp;}
   else{
-	  return (void*)-1;}*/
+	  return (void*)-1;}
     
 }
 
