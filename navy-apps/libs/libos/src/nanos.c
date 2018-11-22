@@ -47,7 +47,7 @@ void *_sbrk(intptr_t increment){
   void* temp=pbk;
   //pbk+=increment;
   //return temp;
-  uintptr_t a=_syscall_(SYS_brk, (uintptr_t) pbk+increment,0,0);
+  intptr_t a=_syscall_(SYS_brk, (intptr_t) pbk+increment,0,0);
   if(a==0) {
 	  pbk=pbk+increment; return temp;}
   else{
