@@ -33,7 +33,7 @@ uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c) {
 				  for(int i=0;i<c;i++)
 					  _putc(*(char*)(b+i));
 			    }
-			    //Log("PPP");
+			    Log("PPP");
 			    return c;
 }
 
