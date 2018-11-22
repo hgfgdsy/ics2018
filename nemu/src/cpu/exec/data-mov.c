@@ -37,7 +37,7 @@ make_EHelper(pusha) {
 
 make_EHelper(popa) {
   //TODO();
-  for(int i=0;i<=7;i++){
+  for(int i=7;i>=0;i--){
 	  if(i!=4){
 		  rtl_pop(&t1);
 		  rtl_sr(i,&t1,4);}
