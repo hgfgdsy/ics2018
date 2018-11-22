@@ -3,7 +3,7 @@
 
 //extern void _halt(int code) __attribute__((__noreturn__));
 uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c); 
-
+intptr_t sys_brk(uintptr_t addr);
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
@@ -13,7 +13,7 @@ _Context* do_syscall(_Context *c) {
   a[3] = c->GPR4;
 
   switch (a[0]) {
-	  case SYS_brk: c->GPRx=0; break;
+	  case SYS_brk: c->GPRx=sys_brk(a[1]); break;
 	  case SYS_write: /*if(a[1]==1||a[1]==2){
 				  for(int i=0;i<a[3];i++)
 					  _putc(*(char*)(a[2]+i));
@@ -37,5 +37,7 @@ uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c) {
 			    return c;
 }
 
+intptr_t sys_brk(uintptr_t addr) {
+	return 0;}
 
 
