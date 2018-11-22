@@ -38,7 +38,7 @@ int _open(const char *path, int flags, mode_t mode) {
 
 int _write(int fd, void *buf, size_t count){
   //_exit(SYS_write);
-  return  _syscall_(SYS_write, fd, buf, count);
+  return  _syscall_(SYS_write, fd, (intptr_t)buf, count);
   //return count;
 }
 
@@ -55,8 +55,8 @@ void *_sbrk(intptr_t increment){
   return temp;*/
   intptr_t now=(intptr_t)pbk+increment;
   pbk=(void*)now;
-  intptr_t a=_syscall_(SYS_brk, now,0,0);
-  if(a==0) {
+  //intptr_t a=_syscall_(SYS_brk, now,0,0);
+  if(_syscall_(SYS_brk,now,0,0)==0) {
 	  return temp;}
   else{
 	  return (void*)-1;}
