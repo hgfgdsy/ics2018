@@ -54,7 +54,7 @@ void *_sbrk(intptr_t increment){
   //intptr_t  a=_syscall_(SYS_brk,now,0,0);
   //pbk=(void*)now;
   //return temp;
-  if(_syscall_(SYS_brk,now,0,0)!=-1) {
+  if(_syscall_(SYS_brk,now,0,0)==0) {
 	   pbk=(void*)now;
 	  return temp;}
   else{
