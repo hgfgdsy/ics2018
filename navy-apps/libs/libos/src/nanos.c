@@ -22,9 +22,9 @@ intptr_t _syscall_(int type, intptr_t a0, intptr_t a1, intptr_t a2){
 #error _syscall_ is not implemented
 #endif
 
-extern char _end;
+//extern char _end;
 
-void *pbk=&_end;
+//void *pbk=&_end;
 
 void _exit(int status) {
   _syscall_(SYS_exit, status, 0, 0);
@@ -42,15 +42,22 @@ int _write(int fd, void *buf, size_t count){
   //return count;
 }
 
+
+extern char _end;
+void* pbk=&_end;
+void* temp;
+
 void *_sbrk(intptr_t increment){
   //return (void *)-1;
-  void* temp=pbk;
+  temp=pbk;
   /*_syscall_(SYS_brk, (intptr_t) pbk+increment,0,0);
   pbk+=increment;
   return temp;*/
-  intptr_t a=_syscall_(SYS_brk, ((intptr_t)pbk+increment),0,0);
+  intptr_t now=(intptr_t)pbk+increment;
+  pbk=now;
+  intptr_t a=_syscall_(SYS_brk, now,0,0);
   if(a==0) {
-	  pbk=(void*)((intptr_t)pbk+increment); return temp;}
+	  return temp;}
   else{
 	  return (void*)-1;}
     
