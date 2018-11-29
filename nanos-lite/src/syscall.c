@@ -25,10 +25,11 @@ _Context* do_syscall(_Context *c) {
 	  case SYS_read: c->GPRx = fs_read((int)a[1], (void*)a[2], (size_t)a[3]); break;
 	  case SYS_open: c->GPRx = fs_open((const char*)a[1], (int) a[2], a[3]); break; 
 	  case SYS_brk: c->GPRx=sys_brk(a[1]); break;
-	  case SYS_write: /*if(a[1]==1||a[1]==2){
+	  case SYS_write: if(a[1]==1||a[1]==2){
 				  for(int i=0;i<a[3];i++)
 					  _putc(*(char*)(a[2]+i));
-				  c->GPRx=a[3];}*/
+				  c->GPRx=a[3];}
+			  else if(a[1]>=3)
 		          c->GPRx=fs_write((int)a[1],(const void*)a[2],(size_t)a[3]);
 			  break;
 	  case SYS_exit: _halt(c->GPRx); break;
