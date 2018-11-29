@@ -6,7 +6,7 @@ typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
 
 extern size_t ramdisk_read(void* buf, size_t offset, size_t len);
 extern size_t ramdisk_write(const void* buf, size_t offset, size_t len);
-
+extern size_t serial_write(const void* buf, size_t offset, size_t len);
 
 
 typedef struct {
@@ -33,8 +33,8 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
   {"stdin", 0, 0, 0, invalid_read, invalid_write},
-  {"stdout", 0, 0, 0, invalid_read, invalid_write},
-  {"stderr", 0, 0, 0, invalid_read, invalid_write},
+  {"stdout", 0, 0, 0, invalid_read, serial_write},
+  {"stderr", 0, 0, 0, invalid_read, serial_write},
 #include "files.h"
 };
 
@@ -69,12 +69,16 @@ ssize_t fs_read(int fd, void *buf, size_t len){
 }
 
 ssize_t fs_write(int fd, const void *buf, size_t len){
+	if(file_table[fd].write==NULL){
 	size_t fz=fs_filesz(fd);
 	if(fz-file_table[fd].open_offset<len)
 		len = fz - file_table[fd].open_offset;
 	ramdisk_write(buf, file_table[fd].disk_offset+file_table[fd].open_offset, len);
 	file_table[fd].open_offset += len;
-	return len;
+	return len;}
+	else{
+		return file_table[fd].write(buf, 0, len);
+	}
 }
 
 off_t fs_lseek(int fd, off_t offset, int whence){
