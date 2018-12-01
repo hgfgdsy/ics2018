@@ -35,7 +35,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 	  if(dispinfo[i]=='\0') break;
   }
   len=i+1;
-  memcpy(buf,(void*)(&dispinfo[0]+offset),len);
+  sprintf(buf,(void*)(&dispinfo[0]+offset),len);
   return len;
 }
 

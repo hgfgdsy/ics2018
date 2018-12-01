@@ -127,7 +127,6 @@ static void get_display_info() {
   FILE *dispinfo = fopen("/proc/dispinfo", "r");
   assert(dispinfo);
   screen_w = screen_h = 0;
-  assert(0);
   char buf[128], key[128], value[128], *delim;
   while (fgets(buf, 128, dispinfo)) {
     *(delim = strchr(buf, ':')) = '\0';
