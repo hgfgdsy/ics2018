@@ -77,7 +77,7 @@ void init_fs() {
 	for(int i=d2;i<=e2;i++){
 		height=(height*10)+s[i]-'0';
 	}
-	file_table[fs_open("/dev/fd",0,0)].size=width*height;
+	//file_table[fs_open("/dev/fd",0,0)].size=width*height;
 
 	// TODO: initialize the size of /dev/fb
 }
