@@ -42,11 +42,13 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   int width = screen_width();
   int height = screen_height();
-  //int x = offset%width;
-  int y = offset/width;
-  for(int x=0;x<width;x++){
-  draw_rect((uint32_t*)buf, x, y, width, height); 
-  buf+=4;
+  int ix = (offset/4)%width;
+  int y = (offset/4)/width;
+  int count=0;
+  for(int x=ix;count<len;x++){
+  draw_rect((uint32_t*)buf, x, y, width, height);
+  buf+=4; 
+  count+=4;
   }  
   return len;
 }
