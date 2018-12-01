@@ -15,7 +15,6 @@ int NDL_OpenDisplay(int w, int h) {
   if (!canvas) {
     NDL_CloseDisplay();
   }
-
   canvas_w = w;
   canvas_h = h;
   canvas = malloc(sizeof(uint32_t) * w * h);
@@ -26,7 +25,6 @@ int NDL_OpenDisplay(int w, int h) {
   } else {
     has_nwm = 0;
   }
-
   if (has_nwm) {
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
@@ -137,6 +135,7 @@ static void get_display_info() {
     if (strcmp(key, "WIDTH") == 0) sscanf(value, "%d", &screen_w);
     if (strcmp(key, "HEIGHT") == 0) sscanf(value, "%d", &screen_h);
   }
+  assert(0);
   fclose(dispinfo);
   assert(screen_w > 0 && screen_h > 0);
 }
