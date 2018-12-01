@@ -88,7 +88,7 @@ name[z++]='/';
 name[z++]='f';
 name[z++]='b';*/
 	int fd=fs_open("/dev/fb", 0, 0);
-	file_table[fd].size=width*height;
+	file_table[fd].size=width*height*4;
 
 	// TODO: initialize the size of /dev/fb
 }
