@@ -98,7 +98,7 @@ size_t fs_filesz(int fd){
 
 
 int fs_open(const char* pathname, int flags, int mode){
-	for(int i=0;i<NR_FILES+3;i++){
+	for(int i=0;i<NR_FILES+2;i++){
 		if(strcmp(file_table[i].name,pathname)==0){
 			file_table[i].open_offset = 0;
 			return i;}

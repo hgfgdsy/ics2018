@@ -85,24 +85,8 @@ void init_device() {
 	  dispinfo[label++] = height[i];
   }
   dispinfo[label]='\0';
-  /*char name[50];
-  int z=0;
-  name[z++]='/';
-name[z++]='p';
-name[z++]='r';
-name[z++]='o';
-name[z++]='c';
-name[z++]='/';
-name[z++]='d';
-name[z++]='i';
-name[z++]='s';
-name[z++]='p';
-name[z++]='i';
-name[z++]='n';
-name[z++]='f';
-name[z++]='o';*/
-  //int fd=fs_open(name, 0, 0);
-  fs_write(4,(void*)dispinfo,label+1);
+  int fd=fs_open("/proc/dispinfo", 0, 0);
+  fs_write(fd,(void*)dispinfo,label+1);
   // TODO: print the string to array `dispinfo` with the format
   // described in the Navy-apps convention
 }
