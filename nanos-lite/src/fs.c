@@ -77,7 +77,16 @@ void init_fs() {
 	for(int i=d2;i<=e2;i++){
 		height=(height*10)+s[i]-'0';
 	}
-	int fd=fs_open("/dev/fb", 0, 0);
+	char name[20];
+	int z=0;
+	name[z++]='/';
+name[z++]='d';
+name[z++]='e';
+name[z++]='v';
+name[z++]='/';
+name[z++]='f';
+name[z++]='b';
+	int fd=fs_open(name, 0, 0);
 	file_table[fd].size=width*height;
 
 	// TODO: initialize the size of /dev/fb
