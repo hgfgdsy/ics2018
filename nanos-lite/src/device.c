@@ -30,13 +30,8 @@ int fs_open(const char *pathname, int flags, int mode);
 static char dispinfo[128] __attribute__((used));
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-  int i=0;
-  for(i=0;1;i++){
-	  if(dispinfo[i]=='\0') break;
-  }
-  len=i+1;
-  sprintf(buf,(void*)(&dispinfo[0]+offset),len);
-  return len;
+  return sprintf(buf,(void*)(&dispinfo[0]+offset),len);
+  
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {

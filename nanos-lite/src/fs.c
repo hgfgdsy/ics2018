@@ -45,9 +45,11 @@ static Finfo file_table[] __attribute__((used)) = {
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
 
 int fs_open(const char* pathname, int flags, int mode);
+int screen_width();
+int screen_height();
 
 void init_fs() {
-	char s[50];
+	/*char s[50];
 	int len=dispinfo_read((void*)s, 0, 40);
 	int width=0,height=0;
 	int cnt=0;
@@ -77,16 +79,9 @@ void init_fs() {
 	}
 	for(int i=d2;i<=e2;i++){
 		height=(height*10)+s[i]-'0';
-	}
-	/*char name[20];
-	int z=0;
-	name[z++]='/';
-name[z++]='d';
-name[z++]='e';
-name[z++]='v';
-name[z++]='/';
-name[z++]='f';
-name[z++]='b';*/
+	}*/
+	int width = screen_width();
+	int height = screen_height();
 	int fd=fs_open("/dev/fb", 0, 0);
 	file_table[fd].size=width*height*4;
 
