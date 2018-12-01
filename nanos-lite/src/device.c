@@ -30,10 +30,9 @@ int fs_open(const char *pathname, int flags, int mode);
 static char dispinfo[128] __attribute__((used));
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-  int cnt=0;
   int i=0;
-  for(i=0;cnt<=1;i++){
-	  if(dispinfo[i]=='\n') ++cnt;
+  for(i=0;1;i++){
+	  if(dispinfo[i]=='\0') break;
   }
   len=i+1;
   memcpy(buf,(void*)(&dispinfo[0]+offset),len);
@@ -85,7 +84,7 @@ void init_device() {
   for(int i=h-1;i>=0;i--){
 	  dispinfo[label++] = height[i];
   }
-  dispinfo[label]='\n';
+  dispinfo[label]='\0';
   int fd=fs_open("/proc/dispinfo", 0, 0);
   fs_write(fd,(void*)dispinfo,label+1);
   // TODO: print the string to array `dispinfo` with the format

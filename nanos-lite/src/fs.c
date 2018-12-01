@@ -60,7 +60,7 @@ void init_fs() {
 				d2=i+1;
 			}
 		}
-		if(s[i]=='\n'){
+		if(s[i]=='\n'||s[i]=='\0'){
 			if(cnt==0){
 				cnt++;
 				e1=i-1;
