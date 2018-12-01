@@ -44,7 +44,7 @@ int _write(int fd, void *buf, size_t count){
 
 
 extern char _end;
-void* pbk=&_end;
+static void* pbk=&_end;
 void* temp;
 
 void *_sbrk(intptr_t increment){
