@@ -1,0 +1,43 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BitmapHeader	bmp.c	/^struct BitmapHeader {$/;"	s	file:
+NDL_CloseDisplay	ndl.c	/^int NDL_CloseDisplay() {$/;"	f
+NDL_DrawRect	ndl.c	/^int NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {$/;"	f
+NDL_LoadBitmap	bmp.c	/^int NDL_LoadBitmap(NDL_Bitmap *bmp, const char *filename) {$/;"	f
+NDL_OpenDisplay	ndl.c	/^int NDL_OpenDisplay(int w, int h) {$/;"	f
+NDL_ReleaseBitmap	bmp.c	/^int NDL_ReleaseBitmap(NDL_Bitmap *bmp) {$/;"	f
+NDL_Render	ndl.c	/^int NDL_Render() {$/;"	f
+NDL_WaitEvent	ndl.c	/^int NDL_WaitEvent(NDL_Event *event) {$/;"	f
+bitcount	bmp.c	/^  uint16_t bitcount; \/\/ 1, 4, 8, or 24$/;"	m	struct:BitmapHeader	file:
+canvas	ndl.c	/^static uint32_t *canvas;$/;"	v	file:
+canvas_h	ndl.c	/^static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;$/;"	v	file:
+canvas_w	ndl.c	/^static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;$/;"	v	file:
+clrimportant	bmp.c	/^  uint32_t clrused, clrimportant;$/;"	m	struct:BitmapHeader	file:
+clrused	bmp.c	/^  uint32_t clrused, clrimportant;$/;"	m	struct:BitmapHeader	file:
+compression	bmp.c	/^  uint32_t compression;$/;"	m	struct:BitmapHeader	file:
+evtdev	ndl.c	/^static FILE *fbdev, *evtdev;$/;"	v	file:
+fbdev	ndl.c	/^static FILE *fbdev, *evtdev;$/;"	v	file:
+filesize	bmp.c	/^  uint32_t filesize;$/;"	m	struct:BitmapHeader	file:
+get_display_info	ndl.c	/^static void get_display_info() {$/;"	f	file:
+has_nwm	ndl.c	/^static int has_nwm = 0;$/;"	v	file:
+height	bmp.c	/^  uint32_t height;$/;"	m	struct:BitmapHeader	file:
+ih_size	bmp.c	/^  uint32_t ih_size;$/;"	m	struct:BitmapHeader	file:
+keyname	ndl.c	82;"	d	file:
+keys	ndl.c	/^static const char *keys[] = {$/;"	v	file:
+numkeys	ndl.c	89;"	d	file:
+offset	bmp.c	/^  uint32_t offset;$/;"	m	struct:BitmapHeader	file:
+pad_x	ndl.c	/^static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;$/;"	v	file:
+pad_y	ndl.c	/^static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;$/;"	v	file:
+planes	bmp.c	/^  uint16_t planes;$/;"	m	struct:BitmapHeader	file:
+resv_1	bmp.c	/^  uint32_t resv_1;$/;"	m	struct:BitmapHeader	file:
+screen_h	ndl.c	/^static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;$/;"	v	file:
+screen_w	ndl.c	/^static int canvas_w, canvas_h, screen_w, screen_h, pad_x, pad_y;$/;"	v	file:
+sizeimg	bmp.c	/^  uint32_t sizeimg;$/;"	m	struct:BitmapHeader	file:
+type	bmp.c	/^  uint16_t type;$/;"	m	struct:BitmapHeader	file:
+width	bmp.c	/^  uint32_t width;$/;"	m	struct:BitmapHeader	file:
+xres	bmp.c	/^  uint32_t xres, yres;$/;"	m	struct:BitmapHeader	file:
+yres	bmp.c	/^  uint32_t xres, yres;$/;"	m	struct:BitmapHeader	file:
