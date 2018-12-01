@@ -55,6 +55,7 @@ void init_device() {
   int h = screen_height();
   char width[20],height[20];
   int a=0,b=0;
+  if(w==0) assert(0);
   while(w>0){
 	  width[a++]=((w%10)+'0');
 	  w/=10;
