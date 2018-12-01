@@ -12,7 +12,7 @@ size_t input_read(uintptr_t reg, void *buf, size_t size) {
 	      kbd->keycode=0x8000^t;
       else
       kbd->keycode = t;*/
-      if((0x1&(t>>15))==1){
+      /*if((0x1&(t>>15))==1){
       if(kbd->keydown==1){
 	      kbd->keycode = _KEY_NONE;
       }
@@ -29,6 +29,10 @@ size_t input_read(uintptr_t reg, void *buf, size_t size) {
 	      else{
 		      kbd->keycode = _KEY_NONE;
 	      }
+      }*/
+      if(t){
+	      kbd->keydown=0;
+	      kbd->keycode=t;
       }
       return sizeof(_KbdReg);
     }
