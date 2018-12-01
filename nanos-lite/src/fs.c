@@ -38,7 +38,7 @@ static Finfo file_table[] __attribute__((used)) = {
   {"stderr", 0, 0, 0, invalid_read, serial_write},
   {"/dev/fb", 0, 0, 0, invalid_read, fb_write},
   {"/dev/events", 0, 0, 0, NULL, NULL},
-  {"/proc/dispinfo", 128, 0, 0, dispinfo_read, NULL},
+  {"/proc/dispinfo", 128, 0, 0, dispinfo_read, invalid_write},
 #include "files.h"
 };
 
@@ -118,7 +118,9 @@ ssize_t fs_read(int fd, void *buf, size_t len){
 	file_table[fd].open_offset += len;
 	return len;}
 	else{
-		return file_table[fd].read(buf, file_table[fd].open_offset, len);
+		size_t l=file_table[fd].read(buf, file_table[fd].open_offset, len);
+		file_table[fd].open_offset+=len;
+		return l;
 	}
 }
 
