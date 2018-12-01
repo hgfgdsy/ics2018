@@ -860,7 +860,7 @@ PAL_UpdateEquipments(
       for (j = 0; j < MAX_PLAYER_EQUIPMENTS; j++)
       {
          w = gpGlobals->g.PlayerRoles.rgwEquipment[j][i];
-
+         printf("%d\n",gpGlobals->g.rgObject[w].item.wScriptOnEquip);
          if (w != 0)
          {
             gpGlobals->g.rgObject[w].item.wScriptOnEquip =
