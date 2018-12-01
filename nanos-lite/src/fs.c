@@ -50,37 +50,6 @@ int screen_width();
 int screen_height();
 
 void init_fs() {
-	/*char s[50];
-	int len=dispinfo_read((void*)s, 0, 40);
-	int width=0,height=0;
-	int cnt=0;
-	int d1=0,d2=0,e1=0,e2=0;
-	for(int i=0;i<len;i++){
-		if(s[i]==':'){
-			if(cnt==0){
-				d1=i+1;
-			}
-			else{
-				d2=i+1;
-			}
-		}
-		if(s[i]=='\n'||s[i]=='\0'){
-			if(cnt==0){
-				cnt++;
-				e1=i-1;
-			}
-			else{
-				cnt++;
-				e2=i-1;
-			}
-		}
-	}
-	for(int i=d1;i<=e1;i++){
-		width=(width*10)+s[i]-'0';
-	}
-	for(int i=d2;i<=e2;i++){
-		height=(height*10)+s[i]-'0';
-	}*/
 	int width = screen_width();
 	int height = screen_height();
 	int fd=fs_open("/dev/fb", 0, 0);
@@ -129,7 +98,9 @@ ssize_t fs_write(int fd, const void *buf, size_t len){
 	file_table[fd].open_offset += len;
 	return len;}
 	else{
-		return file_table[fd].write(buf, file_table[fd].open_offset, len);
+		size_t l = file_table[fd].write(buf, file_table[fd].open_offset, len);
+		file_table[fd].open_offset+=len;
+		return l;
 	}
 }
 
