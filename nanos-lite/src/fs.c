@@ -37,6 +37,7 @@ static Finfo file_table[] __attribute__((used)) = {
   {"stdout", 0, 0, 0, invalid_read, serial_write},
   {"stderr", 0, 0, 0, invalid_read, serial_write},
   {"/dev/fb", 0, 0, 0, invalid_read, fb_write},
+  {"/dev/events", 0, 0, 0, NULL, NULL},
   {"/proc/dispinfo", 128, 0, 0, NULL, NULL},
 #include "files.h"
 };
@@ -86,8 +87,8 @@ name[z++]='v';
 name[z++]='/';
 name[z++]='f';
 name[z++]='b';*/
-	//int fd=fs_open(name, 0, 0);
-	file_table[3].size=width*height;
+	int fd=fs_open("/dev/fb", 0, 0);
+	file_table[fd].size=width*height;
 
 	// TODO: initialize the size of /dev/fb
 }
