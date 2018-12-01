@@ -55,7 +55,6 @@ void init_device() {
   int h = screen_height();
   char width[20],height[20];
   int a=0,b=0;
-  if(w==0) assert(0);
   while(w>0){
 	  width[a++]=((w%10)+'0');
 	  w/=10;
@@ -71,7 +70,7 @@ void init_device() {
   dispinfo[label++]='T';
   dispinfo[label++]='H';
   dispinfo[label++]=':';
-  for(int i=w-1;i>=0;i--){
+  for(int i=a-1;i>=0;i--){
 	  dispinfo[label++] = width[i];
   }
   dispinfo[label++] = '\n';
@@ -82,7 +81,7 @@ void init_device() {
   dispinfo[label++]='H';
   dispinfo[label++]='T';
   dispinfo[label++]=':';
-  for(int i=h-1;i>=0;i--){
+  for(int i=b-1;i>=0;i--){
 	  dispinfo[label++] = height[i];
   }
   dispinfo[label]='\0';
