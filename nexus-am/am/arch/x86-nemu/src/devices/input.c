@@ -30,9 +30,9 @@ size_t input_read(uintptr_t reg, void *buf, size_t size) {
 		      kbd->keycode = _KEY_NONE;
 	      }
       }*/
+      kbd->keycode = t;
       if(t){
 	      kbd->keydown=0;
-	      kbd->keycode=t;
       }
       return sizeof(_KbdReg);
     }
