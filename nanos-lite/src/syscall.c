@@ -34,7 +34,9 @@ _Context* do_syscall(_Context *c) {
 			  else if(a[1]>=3)*/
 		          c->GPRx=fs_write((int)a[1],(const void*)a[2],(size_t)a[3]);
 			  break;
-	  case SYS_exit: _halt(c->GPRx); break;
+	  case SYS_exit: /*_halt(c->GPRx);*/
+			  sys_execve((char*)a[1]); 
+			  break;
 	  case SYS_yield: _yield(); c->GPRx=0;  break;
 	  default: panic("Unhandled syscall ID = %d", a[0]);
   }
