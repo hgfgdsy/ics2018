@@ -2,7 +2,6 @@
 #include "syscall.h"
 #include "unistd.h"
 
-
 //extern void _halt(int code) __attribute__((__noreturn__));
 uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c); 
 intptr_t sys_brk(uintptr_t addr);
@@ -11,6 +10,8 @@ extern ssize_t fs_read(int fd, void *buf, size_t len);
 extern ssize_t fs_write(int fd, const void *buf, size_t len);
 extern off_t fs_lseek(int fd, off_t offset, int whence);
 extern int fs_close(int fd);
+extern void sys_execve(const char* fname);
+
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
@@ -20,6 +21,7 @@ _Context* do_syscall(_Context *c) {
   a[3] = c->GPR4;
 
   switch (a[0]) {
+	  case SYS_execve: sys_execve((char*)a[1]); break;
 	  case SYS_lseek: c-> GPRx = fs_lseek((int) a[1], (off_t)a[2], (int) a[3]); break; 
 	  case SYS_close: c->GPRx = fs_close((int)a[1]); break;
 	  case SYS_read: c->GPRx = fs_read((int)a[1], (void*)a[2], (size_t)a[3]); break;

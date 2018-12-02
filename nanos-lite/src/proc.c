@@ -28,3 +28,7 @@ void init_proc() {
 _Context* schedule(_Context *prev) {
   return NULL;
 }
+
+void sys_execve(const char* fname){
+	naive_uload(NULL,fname);
+}
