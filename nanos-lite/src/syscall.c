@@ -21,7 +21,7 @@ _Context* do_syscall(_Context *c) {
   a[3] = c->GPR4;
 
   switch (a[0]) {
-	  case SYS_exit: sys_execve("bin/init"); break;
+	  case SYS_exit: sys_execve("/dev/tty"); break;
 	  case SYS_execve: sys_execve((char*)a[1]); break;
 	  case SYS_lseek: c-> GPRx = fs_lseek((int) a[1], (off_t)a[2], (int) a[3]); break; 
 	  case SYS_close: c->GPRx = fs_close((int)a[1]); break;
