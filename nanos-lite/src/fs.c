@@ -68,7 +68,6 @@ int fs_open(const char* pathname, int flags, int mode){
 	for(int i=0;i<NR_FILES;i++){
 		if(strcmp(file_table[i].name,pathname)==0){
 			file_table[i].open_offset = 0;
-			printf("%s\t%d\n", pathname, i);
 			return i;
 		        }
 	}
@@ -109,6 +108,7 @@ ssize_t fs_write(int fd, const void *buf, size_t len){
 
 off_t fs_lseek(int fd, off_t offset, int whence){
 	size_t fz = fs_filesz(fd);
+	printf("%d\t%d\t%d\n",fd,offset,whence);
 	switch(whence){
 		case SEEK_SET: if(offset<=fz&&offset>=0){
 				       file_table[fd].open_offset = offset;
