@@ -103,6 +103,12 @@ pid_t _getpid() {
   return 1;
 }
 
+int _fork(){
+}
+
+int _wait(){
+}
+
 /*uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c) {
        if(a==1||a==2) {
        for(int i=0;i<c;i++)
