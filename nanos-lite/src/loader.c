@@ -13,17 +13,18 @@ extern size_t fs_filesz(int fd);
 //extern void vaddr_write(vaddr_t addr, uint32_t data, int len);
 //extern uint8_t pmem[128*1024*1024];
 
-static void *buf = (void* ) DEFAULT_ENTRY;
+//static void *buf = (void* ) DEFAULT_ENTRY;
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   //TODO();
-  //void *buf=(void*)DEFAULT_ENTRY;
+  void *buf=(void*)DEFAULT_ENTRY;
   int fd=fs_open(filename,0,0);
   size_t len = fs_filesz(fd);
   fs_read(fd,buf,len);
-  void* my_temp1 = buf;
-  buf+=len;
-  return (uintptr_t )my_temp1 ;
+  //void* my_temp1 = buf;
+  //buf+=len;
+  //return (uintptr_t )my_temp1 ;
+  return DEFAULT_ENTRY;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
