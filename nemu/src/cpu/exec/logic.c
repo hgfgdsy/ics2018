@@ -13,7 +13,6 @@ make_EHelper(rol) {
   operand_write(id_dest,&t2);
 }
 
-
 make_EHelper(test) {
   
   rtl_and(&t2,&id_dest->val,&id_src->val);
