@@ -53,8 +53,8 @@ _Context *_kcontext(_Area stack, void (*entry)(void *), void *arg) {
   my_context.cs = 8;
   my_context.eip = (uintptr_t)entry;
   void *my_end = stack.end - sizeof(my_context);
-  *(uintptr_t *)(my_end+1) = my_context.cs;
-  *(uintptr_t *)(my_end+2) = my_context.eip;
+  *(uintptr_t *)(stack.end-11) = my_context.cs;
+  *(uintptr_t *)(stack.end-2) = my_context.eip;
   return (_Context *)my_end;
 }
 
