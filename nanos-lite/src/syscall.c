@@ -11,7 +11,7 @@ extern ssize_t fs_write(int fd, const void *buf, size_t len);
 extern off_t fs_lseek(int fd, off_t offset, int whence);
 extern int fs_close(int fd);
 extern void sys_execve(const char* fname);
-
+extern _Context* schedule(_Context *prev);  
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
@@ -38,7 +38,8 @@ _Context* do_syscall(_Context *c) {
 	  /*case SYS_exit: _halt(c->GPRx);
 			  sys_execve((char*)a[1]); 
 			  break;*/
-	  case SYS_yield: _yield(); c->GPRx=0;  break;
+	  case SYS_yield: _yield(); c->GPRx=0;
+			  break;
 	  default: panic("Unhandled syscall ID = %d", a[0]);
   }
 

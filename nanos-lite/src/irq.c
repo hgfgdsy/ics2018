@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern _Context* do_syscall(_Context *c); 
+extern _Context* schedule(_Context *prev); 
 
 static _Context* do_event(_Event e, _Context* c) {
  // assert(0);
@@ -8,7 +9,7 @@ static _Context* do_event(_Event e, _Context* c) {
     case  _EVENT_SYSCALL: //printf("nanshou!!!!!");
 			  do_syscall(c);
 			  break; 
-    case  _EVENT_YIELD: printf("nanshou!!\n"); break;
+    case  _EVENT_YIELD: return schedule(c); break;
     default: panic("Unhandled event ID = %d", e.event);
   }
  // assert(0);
