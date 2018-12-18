@@ -13,6 +13,20 @@ make_EHelper(rol) {
   operand_write(id_dest,&t2);
 }
 
+make_EHelper(rcl) {
+  t0=id_src->val;t3=1;
+  while(t0--){
+	  rtl_msb(&t1,&id_dest->val,id_dest->width);
+	  rtl_get_CF(&t2);
+	  rtl_set_CF(&t1);
+	  rtl_shl(&id_dest->val,&id_dest->val,&t3);
+	  rtl_add(&id_dest->val,&id_dest->val,&t2);
+  }
+  t2=id_dest->val;
+  rtl_update_ZFSF(&t2,id_dest->width);
+  operand_write(id_dest,&t2);
+}
+
 make_EHelper(test) {
   
   rtl_and(&t2,&id_dest->val,&id_src->val);
