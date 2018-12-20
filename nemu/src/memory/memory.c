@@ -20,10 +20,10 @@ paddr_t page_translate(vaddr_t addr){
 	uintptr_t my_PDA = (uintptr_t)((cpu.cr3.page_directory_base) + (((addr>>22)&0x3ff)<<2))<<12;
 	uint32_t my_pd = paddr_read(my_PDA,4);
 	assert((my_pd&0x1)==1);
-	uintptr_t my_PTA = (uintptr_t)(((my_pd>>12) & 0x3fffff) +(((addr>>12)&0x3ff)<<2))<<12;
+	uintptr_t my_PTA = (uintptr_t)(((my_pd>>22) & 0x3ff) +(((addr>>12)&0x3ff)<<2))<<12;
 	uint32_t my_pt = paddr_read(my_PTA,4);
 	assert((my_pt&0x1)==1);
-	return ((my_pt ^0x1) | (addr&0xfff));
+	return ((my_pt & ~0xfff) | (addr&0xfff));
 }
 
 uint32_t paddr_read(paddr_t addr, int len) {
