@@ -28,8 +28,8 @@ make_EHelper(lidt) {
 make_EHelper(mov_r2cr) {
   //TODO();
   switch(id_dest->reg){
-	  case 0:cpu.cr0.val = id_src->val; break;
-	  case 3:cpu.cr3.val = id_src->val; break;
+	  case 0:rtl_lr(&t1,id_src->reg,4);cpu.cr0.val=t1; break;
+	  case 3:rtl_lr(&t1,id_src->reg,4);cpu.cr3.val=t1; break;
 	  default : assert(0);
   }
   print_asm("movl %%%s,%%cr%d", reg_name(id_src->reg, 4), id_dest->reg);
