@@ -48,6 +48,7 @@ typedef struct {
   uint32_t CS;
   uint16_t limit;
   uint32_t base;
+  uint16_t trash;
   CR0 cr0;
   CR3 cr3;
 } CPU_state;
