@@ -19,9 +19,8 @@ paddr_t page_translate(vaddr_t addr){
 	//printf("%x\t%x\n",cpu.cr3.val,addr);
 	uintptr_t my_PDA = (uintptr_t)(cpu.cr3.page_directory_base) + (((addr>>22)&0x3ff)<<2);
 	uint32_t my_pd = paddr_read(my_PDA,4);
-	assert(0);
 	assert((my_pd&0x1)==1);
-	uintptr_t my_PTA = (uintptr_t)(((my_pd>>12) & 0x3fffff) + ((addr>>12)&0x3ff));
+	uintptr_t my_PTA = (uintptr_t)(((my_pd>>12) & 0x3fffff) +(((addr>>12)&0x3ff)<<2));
 	uint32_t my_pt = paddr_read(my_PTA,4);
 	assert((my_pt&0x1)==1);
 	return ((my_pt ^0x1) | (addr&0xfff));
@@ -42,7 +41,7 @@ void paddr_write(paddr_t addr, uint32_t data, int len) {
 }
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
-  if(cpu.cr0.val&0x1){
+  if(cpu.cr0.val&0x80000000){
   if((addr&0xfff)>0x1000-(len<<2)) assert(0);
   else{
   paddr_t paddr=page_translate(addr);
@@ -53,7 +52,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 }
 
 void vaddr_write(vaddr_t addr, uint32_t data, int len) {
-  if(cpu.cr0.val&0x1){
+  if(cpu.cr0.val&0x80000000){
   if((addr&0xfff)>0x1000-(len<<2)) assert(0);
   else{
   paddr_t paddr=page_translate(addr);
