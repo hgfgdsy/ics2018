@@ -23,6 +23,7 @@ paddr_t page_translate(vaddr_t addr){
 	assert((my_pd&0x1)==1);
 	uintptr_t my_PTA = (uintptr_t)(((my_pd>>12) & 0xfffff) +(((addr>>12)&0x3ff)<<2))<<12;
 	uint32_t my_pt = paddr_read(my_PTA,4);
+	printf("%x\n",my_pt);
 	assert((my_pt&0x1)==1);
 	return ((my_pt & ~0xfff) | (addr&0xfff));
 }
