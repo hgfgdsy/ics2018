@@ -41,7 +41,14 @@ void paddr_write(paddr_t addr, uint32_t data, int len) {
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if(cpu.cr0.paging){
-  if((addr&0xfff)>0x1000-len){printf("???\n"); assert(0);}
+  uint32_t my_dig = 0x1000-(addr&0xfff);
+  if(my_dig<len){
+	  /*printf("???\n"); assert(0);*/
+	  paddr_t paddr=page_translate(addr);
+	  uint32_t low=paddr_read(paddr,my_dig);
+	  uint32_t high=paddr_read(paddr+(1<<12),len-my_dig);
+	  return (high<<(my_dig*8))|low;
+  }
   else{
   paddr_t paddr=page_translate(addr);
   return paddr_read(paddr, len);
@@ -52,7 +59,15 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 
 void vaddr_write(vaddr_t addr, uint32_t data, int len) {
   if(cpu.cr0.paging){
-  if((addr&0xfff)>0x1000-len){printf("???\n");assert(0);}
+  uint32_t my_dig = 0x1000-(addr&0xfff);
+  if(my_dig<len){
+	 /* printf("???\n");assert(0);*/
+	  uint32_t low =((1<<(my_dig*8))-1)&data;
+	  uint32_t high = data ^ low;
+          paddr_t paddr=page_translate(addr);
+	  paddr_write(paddr,low,my_dig);
+	  paddr_write(paddr+(1<<12),high,len-my_dig);
+  }
   else{
   paddr_t paddr=page_translate(addr);
   paddr_write(paddr, data, len);
