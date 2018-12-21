@@ -25,16 +25,16 @@ void hello_fun(void *arg) {
 
 void init_proc() {
   //naive_uload(NULL,"/bin/init");
-  context_kload(&pcb[0],(void *)hello_fun);
-  context_uload(&pcb[1], "/bin/dummy");
+  //context_kload(&pcb[0],(void *)hello_fun);
+  context_uload(&pcb[0], "/bin/dummy");
   switch_boot_pcb();
 }
 
 _Context* schedule(_Context *prev) {
   //return NULL;
   current -> cp = prev;
-  //current = &pcb[0];
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  current = &pcb[0];
+  //current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
   return current -> cp;
 }
 
