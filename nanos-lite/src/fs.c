@@ -136,7 +136,6 @@ off_t fs_lseek(int fd, off_t offset, int whence){
 
 
 int fs_close(int fd){
-	printf("%d\n",fd);
 	return 0;
 }
 
