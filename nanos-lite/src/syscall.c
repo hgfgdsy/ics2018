@@ -12,6 +12,7 @@ extern off_t fs_lseek(int fd, off_t offset, int whence);
 extern int fs_close(int fd);
 extern void sys_execve(const char* fname);
 extern _Context* schedule(_Context *prev);  
+extern int mm_brk(uintptr_t new_brk);
 
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
@@ -56,6 +57,6 @@ uintptr_t sys_write(uintptr_t a,uintptr_t b,uintptr_t c) {
 }
 
 intptr_t sys_brk(uintptr_t addr) {
-	return 0;}
+	return mm_brk(addr);}
 
 
