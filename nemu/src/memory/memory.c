@@ -46,7 +46,8 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 	  /*printf("???\n"); assert(0);*/
 	  paddr_t paddr=page_translate(addr);
 	  uint32_t low=paddr_read(paddr,my_dig);
-	  uint32_t high=paddr_read((paddr+(1<<12))&~0xfff,len-my_dig);
+	  paddr_t paddr1=page_translate(addr+my_dig);
+	  uint32_t high=paddr_read(paddr1,len-my_dig);
 	  return (high<<(my_dig*8))|low;
   }
   else{
@@ -66,7 +67,8 @@ void vaddr_write(vaddr_t addr, uint32_t data, int len) {
 	  uint32_t high = data ^ low;
           paddr_t paddr=page_translate(addr);
 	  paddr_write(paddr,low,my_dig);
-	  paddr_write((paddr+(1<<12))&~0xfff,high,len-my_dig);
+	  paddr_t paddr1=page_translate(addr+my_dig);
+	  paddr_write(paddr1,high,len-my_dig);
   }
   else{
   paddr_t paddr=page_translate(addr);
