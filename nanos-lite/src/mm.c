@@ -34,6 +34,7 @@ int mm_brk(uintptr_t new_brk) {
 	  }
 	  current -> max_brk = new_brk;
   }
+  if(current -> max_brk < new_brk) current -> max_brk = new_brk;
   current -> cur_brk = new_brk;
   return 0;
 }
