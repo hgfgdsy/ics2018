@@ -91,9 +91,9 @@ int _map(_Protect *p, void *va, void *pa, int mode) {
 
 _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *args) {
   //return NULL;
-  for(int i=1;i<=(1<<8);i++){
+  /*for(int i=1;i<=(1<<8);i++){
 	  *(uintptr_t *)(ustack.end-(1<<2)) = 0;
-  }
+  }*/
   void *my_end1 = ustack.end - (1<<10);
   _Context *my_context1 = (_Context *)my_end1;
   my_context1 -> cs =8;
