@@ -44,6 +44,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
           my_phy = new_page(1);
 	  my_vir = (void *)(uintptr_t)(DEFAULT_ENTRY+(my_pages<<12));
 	  _map(&pcb->as,my_vir,my_phy,1);
+	  printf("%d\n",my_phy);
 	  fs_read(fd,my_phy,my_ab);
   }
   return DEFAULT_ENTRY;
