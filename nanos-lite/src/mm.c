@@ -16,7 +16,7 @@ void free_page(void *p) {
 
 /* The brk() system call handler. */
 int mm_brk(uintptr_t new_brk) {
-  assert(0);
+  
   if(current -> max_brk < new_brk && (current -> max_brk & ~0xfff) != (new_brk & ~0xfff)){
 	  uint32_t my_glory = (current -> max_brk & ~0xfff) + (1<<12);
 	  uint32_t my_difference = (uint32_t)(new_brk - my_glory);

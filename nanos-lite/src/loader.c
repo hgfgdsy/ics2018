@@ -46,6 +46,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	  _map(&pcb->as,my_vir,my_phy,1);
 	  fs_read(fd,my_phy,my_ab);
   }
+  pcb -> max_brk = pcb -> cur_brk = DEFAULT_ENTRY + len;
   return DEFAULT_ENTRY;
 
 }
