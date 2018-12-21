@@ -76,6 +76,16 @@ void _switch(_Context *c) {
 }
 
 int _map(_Protect *p, void *va, void *pa, int mode) {
+  uint32_t my_PDad = (uint32_t)p->ptr +((((uint32_t)va>>22)&0x3ff)<<2);
+  uint32_t my_findPD = *(uint32_t *)((uintptr_t)my_PDad);
+  if((my_findPD & PTE_P)==0){
+	  void *my_newPT = pgalloc_usr(1);
+	  *(uint32_t *)((uintptr_t)my_PDad) = ((uint32_t)my_newPT & ~0xfff) | PTE_P;
+  }
+  uint32_t my_findPT =( *(uint32_t *)((uintptr_t)my_PDad) ^ PTE_P)  +((((uint32_t)va>>12)&0x3ff)<<2);
+  uint32_t my_final = ((uint32_t)pa & ~0xfff) | PTE_P;
+  *(uint32_t *)((uintptr_t)my_findPT) = my_final;
+   
   return 0;
 }
 
@@ -88,5 +98,6 @@ _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *
   _Context *my_context1 = (_Context *)my_end1;
   my_context1 -> cs =8;
   my_context1 -> eip = (uintptr_t)entry;
+  my_context1 -> prot = p;
   return my_context1;
 }
