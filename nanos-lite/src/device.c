@@ -2,6 +2,8 @@
 #include <amdev.h>
 #include "unistd.h"
 
+extern int fg_pcb;
+
 size_t serial_write(const void *buf, size_t offset, size_t len) {// _yield();
   for(int i=0;i<len;i++){
       _putc(*(char*)(buf+i));
@@ -24,6 +26,9 @@ size_t events_read(void *buf, size_t offset, size_t len) { //_yield();
 	  key ^= 0x8000;
 	  down = true;
   }
+  if(key==0x05) fg_pcb=0;
+  if(key==0x06) fg_pcb=2;
+  if(key==0x04) fg_pcb=3;
   uint32_t time=uptime();
   if(key != _KEY_NONE) {
 	 return sprintf(buf, "%s %s\n" , down ? "kd" : "ku", keyname[key]);

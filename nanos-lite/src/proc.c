@@ -22,12 +22,15 @@ void hello_fun(void *arg) {
     _yield();
   }
 }
-
+int fg_pcb;
 void init_proc() {
   //naive_uload(NULL,"/bin/init");
   //context_kload(&pcb[0],(void *)hello_fun);
+  fg_pcb=0;
   context_uload(&pcb[0], "/bin/pal");
   context_uload(&pcb[1], "/bin/hello");
+  context_uload(&pcb[2], "/bin/pal");
+  context_uload(&pcb[3], "/bin/pal");
   switch_boot_pcb();
 }
 
@@ -35,7 +38,7 @@ _Context* schedule(_Context *prev) {
   //return NULL;
   current -> cp = prev;
   //current = &pcb[0];
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  current = (current == &pcb[fg_pcb] ? &pcb[1] : &pcb[fg_pcb]);
   return current -> cp;
 }
 
