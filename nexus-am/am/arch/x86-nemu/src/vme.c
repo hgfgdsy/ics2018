@@ -99,5 +99,6 @@ _Context *_ucontext(_Protect *p, _Area ustack, _Area kstack, void *entry, void *
   my_context1 -> cs =8;
   my_context1 -> eip = (uintptr_t)entry;
   my_context1 -> prot = p;
+  my_context1 ->eflags = 0x200;
   return my_context1;
 }

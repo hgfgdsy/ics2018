@@ -269,7 +269,7 @@ make_EHelper(real) {
   idex(eip, &opcode_table[opcode]);
 }
 
-
+void raise_intr(uint8_t NO, vaddr_t ret_addr);
 static inline void update_eip(void) {
   if (decoding.is_jmp) { decoding.is_jmp = 0; }
   else { cpu.eip = decoding.seq_eip; }
@@ -302,4 +302,9 @@ void exec_wrapper(bool print_flag) {
   void difftest_step(uint32_t);
   difftest_step(ori_eip);
 #endif
+  if(cpu.INTR&cpu.IF) {
+	  cpu.INTR = false;
+	  raise_intr(32,cpu.eip);
+	  update_eip();
+  }
 }
