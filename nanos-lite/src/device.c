@@ -27,9 +27,9 @@ size_t events_read(void *buf, size_t offset, size_t len) { //_yield();
 	  down = true;
   }
   Log("%d\n",key);
-  if(key==0x05) fg_pcb=0;
-  if(key==0x06) assert(0);
-  if(key==0x04) fg_pcb=3;
+  if(key==2) fg_pcb=0;
+  if(key==3) assert(0);
+  if(key==4) fg_pcb=3;
   uint32_t time=uptime();
   if(key != _KEY_NONE) {
 	 return sprintf(buf, "%s %s\n" , down ? "kd" : "ku", keyname[key]);
