@@ -26,6 +26,7 @@ size_t events_read(void *buf, size_t offset, size_t len) { //_yield();
 	  key ^= 0x8000;
 	  down = true;
   }
+  assert(0);
   if(key==0x05) fg_pcb=0;
   if(key==0x06) assert(0);
   if(key==0x04) fg_pcb=3;
